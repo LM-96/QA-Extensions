@@ -1,0 +1,30 @@
+\section{Introduction}
+
+\href{http://htmlpreview.github.io/?https://github.com/anatali/issLab2021/blob/main/it.unibo.qakactor/userDocs/LabQakIntro2021.html}{\textbf{\textit{QActor}}} (or \textbf{\textit{QAK}}) is a modeling language to define meta models using \textit{actors}. The language is well explained in the official web page $\big[$ \href{http://htmlpreview.github.io/?https://github.com/anatali/issLab2021/blob/main/it.unibo.qakactor/userDocs/LabQakIntro2021.html}{link} $\big]$.
+
+The \textit{QActor} does not only provide a custom \texttt{DSL}, but also an entire infrastructure that let the developer to design and build basic \textit{actor} systems.
+Actually, there are two ways to write systems based on actor modeling using \texttt{QAK}:
+\begin{enumerate}
+	\item \textit{the custom DSL} made using \href{https://www.eclipse.org/}{\texttt{Eclipse}} and \href{https://www.eclipse.org/Xtext/}{\texttt{Xtext}};
+	\item \textit{manually}, writing a description of a system in a \texttt{.pl} file and extending some class of the infrastructure like \href{https://htmlpreview.github.io/?https://github.com/anatali/issLab2021/blob/main/it.unibo.qakactor/userDocs/LabQakIntro2021.html\#ActorBasic}{\texttt{ActorBasic}} or \texttt{ActorBasicFsm}.
+\end{enumerate}
+
+Unfortunately, these two mechanisms have some problems:
+\begin{enumerate}
+	\item the DSL is strongly dependent from \texttt{Eclipse} because it has not an own IDE.
+	This can be a problem because the \texttt{QAK} is written in \texttt{Kotlin} and \texttt{Eclipse} is not fully compatible with this language.
+	\item writing all things \textit{manually} should be very \textit{uncomfortable}.	
+\end{enumerate}
+
+So, in this report we analyze some alternatives to define the actor model according with the \texttt{QAK} infrastructure. We will not go into the details of the \texttt{QActor} implementations because they are fully described into the official web page but we emphasize that the main way to create an actor in this system is:
+\begin{center}
+	\textbf{Creates a class} that extends \texttt{ActorBasic} or \texttt{ActorBasicFsm} with the body of the actor and \textbf{add a proper description} of it into a file \texttt{.pl}. This file must also contains all the information about the context of the actor and the other actors that can be also remote.\footnote{See the documentation for more details.}
+\end{center}
+
+Indeed, the \texttt{DSL} does not do magic: it does nothing more than auto-generate that follows the mechanism the have just described.
+As we have already said, we want to extend this in order to have a new mechanism based on \texttt{Java Annotation}.
+
+But before doing this, we also want to find a way to strongly \textbf{separate the actor system description from its runtime implementation}. In fact, if we consider a single actor, actually both of its description and its runtime context are enclosed into the \texttt{ActorBasic} class (or \texttt{ActorBasicFsm}) and its subclass that contains the body.
+
+Then we want to provide a way to define \textit{passive entities} that only contain the description of the actor system you want to define. As these entities will only be used to describe the system, we will call them \textbf{\textit{transient}}. 
+
