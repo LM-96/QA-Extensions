@@ -11,4 +11,9 @@ open class TransientActorBasic(
     val ioBound : Boolean,
     val channelSize : Int,
     val actorBody : TransientActorBasicBody/*? = null*/,
-)
+) {
+
+    override fun toString(): String {
+        return "TransientActorBasic(actorName='$actorName', actorScope=$actorScope, discardMessages=$discardMessages, confined=$confined, ioBound=$ioBound, channelSize=$channelSize, actorBody=$actorBody)"
+    }
+}
