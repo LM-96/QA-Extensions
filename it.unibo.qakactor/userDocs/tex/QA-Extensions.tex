@@ -49,7 +49,9 @@
 	morecomment=[s]{/*}{*/},
 	morestring=[b]",
 	morestring=[s]{"""*}{*"""},
-	ndkeywords={@Deprecated, @JvmField, @JvmName, @JvmOverloads, @JvmStatic, @JvmSynthetic, Array, Byte, Double, Float, Int, Integer, Iterable, Long, Runnable, Short, String, Any, Unit, Nothing},
+	ndkeywords={@Deprecated, @JvmField, @JvmName, @JvmOverloads, @JvmStatic, @JvmSynthetic, Array, Byte, Double, Float, Int, Integer, Iterable, Long, Runnable, Short, String, Any, Unit, Nothing, @QActor,
+	@QakContext, @Hostname, @State, @Initial, @WhenDispatch, @WhenRequest, @WhenReply, @WhenEvent,
+	state, action, transition},
 	ndkeywordstyle={\color{BurntOrange}\bfseries},
 	sensitive=true,
 	stringstyle={\color{ForestGreen}\ttfamily},
@@ -59,8 +61,6 @@
 \title{\textbf{QActor Extensions:\\Additional mechanisms to define the model}}
 \author{Luca Marchegiani}
 
-\makeindex
-
 \begin{document}
 \maketitle
 
@@ -69,6 +69,7 @@
 \input{section/01_introduction.tex}
 \input{section/02_the_transient_model.tex}
 \input{section/03_the_builder_mechanism.tex}
+\input{section/04_annotations.tex}
 %----------------------------------------------------------------------------------------
 
 \end{document}

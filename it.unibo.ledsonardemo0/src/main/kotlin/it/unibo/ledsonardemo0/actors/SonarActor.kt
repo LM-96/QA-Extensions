@@ -51,7 +51,7 @@ class SonarActor(name : String, scope : CoroutineScope) : ActorBasicFsm(name, sc
             state("answareWithActual") {
                 action {
                     actorPrintln("Received request: $currentMsg")
-                    replyToCaller("readDistance", "readDistance($distance)")
+                    replyToCaller("readedDistance", "readedDistance($distance)")
                     actorPrintln("Replied with distance [$distance]")
                 }
                 transition(edgeName = "t4", targetState = "work", cond = doswitch())

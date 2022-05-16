@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="SonarLed_files/bootstrap.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> 
+
+    <link href="SonarLed_files/ledsonar.css" rel="stylesheet" type="text/css"> 
+
+    <title>SonarLed</title>
+  </head>
+  <body>
+
+    <div class="container my-3 text-center">
+      <div class="row my-2">
+        <h1>Led and Sonar Simulator</h1>
+      </div>
+
+      <!--<div class="row">
+        <div class="col">
+         <div class="input-group mb-3">
+           <span class="input-group-text" id="webSocketUrlLabel">WebSocket URL:</span>
+           <span class="input-group-text">ws://</span>
+           <input type="text" class="form-control" placeholder="WebSocket URL" id="wsurl" aria-label="WebSocket URL" aria-describedby="webSocketUrlLabel" value="localhost:8000/ledsonarws">
+           <button class="btn btn-secondary px-3" type="button" onclick="onSetWsUrl()">Set</button>
+         </div>
+        </div>
+     </div>-->
+      <div class="row">
+        <div class="col my-auto">
+          <label for="sonarDistanceRange" class="form-label"><h5>Distance</h5></label>
+          <input type="range" class="form-range" id="sonarDistanceRange" min="0" max="5000" step="1" value="5000" oninput="updateDistanceAndSend(this.value)">
+
+          <div class="spacer my-5"></div>
+
+          <table class="table table-hover mx-auto" style="max-width: 300px;">
+            <tbody>
+              <tr class="table-info">
+                <th class="text-start px-3">Detected Distance :</th>
+                <td style="min-width: 80px;"><span id="distanceValue">5000</span> cm</td>
+              </tr>
+              <tr id="ledTr" class="table-danger">
+                <th class="text-start px-3">Led Status :</th>
+                <td id="ledStatus">OFF</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="row">
+             <div class="col">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="tresholdDistanceLabel">Treshold Distance:</span>
+                <input type="text" class="form-control" placeholder="Treshold Distance" aria-label="Treshold Distance" aria-describedby="tresholdDistanceLabel" id="tresholdDistanceValue" value="2000">
+                <button class="btn btn-secondary px-3" type="button" onclick="onSetTresholdClick()">Set</button>
+              </div>
+             </div>
+          </div>
+          
+        </div>
+        <div class="col">
+          <div class="container-sm">
+            <img src="SonarLed_files/led-off.jpg" class="img-thumbnail" id="ledStatusImg" alt="LED OFF" style="max-width: 200px;">
+          </div>
+        </div>
+      </div>
+
+      <div class="info-div mx-3 text-start overflow-auto" style="max-height: 150px;" id="logDiv">
+        <table class="table table-borderless table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Time</th>
+              <th scope="col">Description</th>
+            </tr>
+          </thead>
+          <tbody id="logTableBody">
+          <tr class="table-info"><td class="text-start px-3" style="width: 20%;">16:06:27</td><td style="width: 79%;">Trying to open websocket with 'localhost:8000/ledsonarws'</td></tr><tr class="table-success"><td class="text-start px-3" style="width: 20%;">16:06:27</td><td style="width: 79%;">Page Loaded</td></tr><tr class="table-success"><td class="text-start px-3" style="width: 20%;">16:06:27</td><td style="width: 79%;">WebSocket: connection established with 'localhost:8000/ledsonarws'</td></tr><tr class="table-info"><td class="text-start px-3" style="width: 20%;">16:06:27</td><td style="width: 79%;">Request new treshold: 2000</td></tr></tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="SonarLed_files/bootstrap.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+    <!-- JS -->
+    <script src="SonarLed_files/ledSonar.js"></script>   
+  
+
+</body></html>

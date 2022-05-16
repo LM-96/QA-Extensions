@@ -120,4 +120,43 @@ val system = runBlocking {
 }
 \end{lstlisting}
 
+The \texttt{.kt} source code is available \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.qakactor/src/main/kotlin/demo/EchoExample.kt}{here}.
+
 At the end of the execution of this snippet, the \verb*|system| variable contains the \texttt{OOP} description of the actor system with the \texttt{echoactor} described in the figure \ref{fig::echo_actor_example}.
+
+The motivations for the line $22$ (\verb*|addQActorBasicFsm(QActorBasicFsm())|) will be clarified in the next section.
+
+\subsection{The last step for builders: adding support for make \texttt{TransientSystem} runnable}
+
+In the previous example we have created a complete description of the system contained into the \verb*|system| variable. But what do we do with this now? How we can run the \texttt{TransientSystem}?
+
+In order to do it, \textbf{we have to modify the launching methods of the \texttt{QA-System}}.
+Without going into details, we have created a new method into the \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.qakactor/src/main/kotlin/QakContext.kt}{QakContext.kt} that has this signature:
+
+\begin{center}
+	\begin{tabular}{c}
+		\begin{lstlisting}[frame=none,numbers=none,language=Kotlin]
+			fun createSystem(transientSystem : TransientSystem)
+		\end{lstlisting}
+	\end{tabular}
+\end{center}
+
+This method \textcolor{BrickRed}{\textbf{creates and run the system}} starting from a \texttt{TransientSystem} instance.
+In addition to this, we have created lots of method into the \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.qakactor/src/main/kotlin/sysUtil.kt}{\texttt{sysUtil.kt}} utility that helps the \verb|createSystem()| to do its work such as:
+\begin{center}
+	\begin{tabular}{c}
+		\begin{lstlisting}[frame=none,numbers=none,language=Kotlin]
+			fun createSystem(tSystem: TransientSystem, start : Boolean = true)
+			fun createContext(tCtx : TransientContext, hostName: String) : QakContext?
+			fun addTheActors(ctx: TransientContext, qakCtx : QakContext )
+		\end{lstlisting}
+	\end{tabular}
+\end{center}
+which follows the methods that were used by the old mechanism.
+
+In order to conclude the example of the \ref{lst::echoexample}, we must add this line to run the system:
+\begin{lstlisting}[language=Kotlin]
+	QakContext.createSystem(system)
+\end{lstlisting}
+
+
