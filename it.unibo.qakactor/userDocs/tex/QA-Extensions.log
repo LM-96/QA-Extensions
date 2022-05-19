@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.1) (preloaded format=pdflatex 2022.1.31)  16 MAY 2022 20:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.1) (preloaded format=pdflatex 2022.1.31)  17 MAY 2022 16:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -689,11 +689,11 @@ po-nent called [][]\T1/cmtt/m/n/12 QakLauncher.kt[][]
 
 [15]) [16] (QA-Extensions.aux)
 Package rerunfilecheck Info: File `QA-Extensions.out' has not changed.
-(rerunfilecheck)             Checksum: 98E3263E29B26245BAE236F9C3DB0DEA;2779.
+(rerunfilecheck)             Checksum: C8F330BFB1D87D5B98DD7DCE2C83DF59;2883.
  ) 
 Here is how much of TeX's memory you used:
  14689 strings out of 478593
- 237804 string characters out of 2845076
+ 237802 string characters out of 2845076
  595978 words of memory out of 3000000
  32415 multiletter control sequences out of 15000+600000
  487668 words of font info for 63 fonts, out of 8000000 for 9000
@@ -723,9 +723,9 @@ Programs/MiKTeX/fonts/type1/public/cm-super/sfti1200.pfb><C:/Users/Luca/AppData
 /Local/Programs/MiKTeX/fonts/type1/public/cm-super/sftt1000.pfb><C:/Users/Luca/
 AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sftt1200.pfb><C:/User
 s/Luca/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sftt1440.pfb>
-Output written on QA-Extensions.pdf (16 pages, 967571 bytes).
+Output written on QA-Extensions.pdf (16 pages, 971482 bytes).
 PDF statistics:
- 702 PDF objects out of 1000 (max. 8388607)
+ 703 PDF objects out of 1000 (max. 8388607)
  229 named destinations out of 1000 (max. 500000)
  150 words of extra memory for PDF output out of 10000 (max. 10000000)
 

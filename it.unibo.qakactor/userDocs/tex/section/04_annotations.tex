@@ -63,7 +63,7 @@ In order to start this system it possible to call the \texttt{startLedSonarSyste
 
 If you want to use a real sonar or a real led you only have to extends properly the two \texttt{POJO} owned by the \texttt{SonarActor} and the \texttt{LedActor}.
 
-\subsection{Descriptive annotations}
+\subsection{Descriptive annotations [ \href{https://github.com/LM-96/QA-Extensions/tree/main/it.unibo.ledsonardemo0}{\textcolor{Emerald}{\textbf{ledonarsystem0}}} ]}
 
 The focus of our discussion is \textcolor{ForestGreen}{\textbf{to introduce a new mechanism do let the developer able to easily describe the system using annotations}}. The use of the annotation can be very useful:
 \begin{itemize}
@@ -242,9 +242,15 @@ fun main(args: Array<String>) {
 }
 \end{lstlisting}
 
+Notice that this mechanism is added to the infrastructure as an extension and without invalidating the old \texttt{.pl} definition. 
+
 \subsection{New classes for injection}
 
 We remember that \href{https://github.com/anatali/issLab2021/blob/main/it.unibo.qakactor/src/main/kotlin/ActorBasic.kt}{ActorBasic} and \href{https://github.com/anatali/issLab2021/blob/main/it.unibo.qakactor/src/main/kotlin/ActorBasicFsm.kt}{ActorBasicFsm} classes are \textit{abstract} so it is not possible to directly create instances of this classes because of the definition of \textit{abstract}.
 For this reason we have created the two classes shown in the previous section and that are used from the builders: \texttt{ActorBasicWrapper} and \texttt{ActorBasicFsmWrapper} that takes the transient actor definitions and wrap them into \texttt{ActorBasic} or \texttt{ActorBasicFsm} instances.
 
 Now it is clear that a level of strong separation has been introduced between the \textcolor{ForestGreen}{\textbf{\textit{definition}}} of the actor system and the \textcolor{ForestGreen}{\textbf{\textit{runnable implementation}}} of it.
+
+In addition to this, the new \texttt{@QActor} annotation allow the developer to specify the actor's name directly into the proper annotation field. So, if the developer is forced to directly extends the \texttt{ActorBasic} class, he must always specify a constructor with the two parameter needed by the superclass as done in the previous listings.
+
+We want not only to avoid this but also to introduce \textbf{a new stronger level of separation} between the runnable part of the actor (represented by the \texttt{ActorBasic} inherited type) and the description (represented by the override of the proper methods).
