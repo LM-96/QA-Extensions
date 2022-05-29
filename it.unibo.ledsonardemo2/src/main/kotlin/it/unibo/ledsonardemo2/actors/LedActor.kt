@@ -14,10 +14,6 @@ class LedActor : QActorBasicFsm() {
     @EpsilonMove("t0", "work")
     suspend fun begin() {
         actorPrintln("Started")
-        emit event "" withArgs ""
-        send dispatch "dispatchId" to "destActor" withArgs arg ["", ""]
-        replyTo request "requestName" with "replyName" withArgs "arg0"
-        update resource "new coap update"
     }
 
     @State
