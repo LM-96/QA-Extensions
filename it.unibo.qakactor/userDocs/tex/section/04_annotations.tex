@@ -30,7 +30,7 @@ In summary:
 	The actor can receive dispatch \texttt{ledCmd(CMD)} with two possible value: \texttt{ON} for power on the led and \texttt{OFF} for turn it off.
 	
 	\item \underline{\texttt{DistanceActor}}:\\
-	This actor continuously monitors the distance emitted by the \texttt{SonarActor}: if the value is less then the threshold then emits a \texttt{distanceAlarm("CRITICAL")} event, otherwise if the the distance returns to a value greater then the threshold then it fires the event \texttt{distanceAlarm("NORMAL")}.
+	This actor continuously monitors the distance emitted by the \texttt{SonarActor}: if the value is less then the threshold then emits a \texttt{distanceAlarm("CRITICAL")} event, otherwise if the the distance returns to a value greater than the threshold then it fires the event \texttt{distanceAlarm("NORMAL")}.
 	
 	\item \underline{\texttt{AppActor}}:\\
 	This actor realizes the business logic of the example system. When a \texttt{distanceAlarm} event is detected then it command the led in the proper way following the logic we have already shown.
@@ -108,9 +108,9 @@ So the first step is \textcolor{ForestGreen}{\textbf{to develop some annotations
 	\end{lstlisting}
 \end{itemize}
 
-Actually, there is not full support to the description of remote actors but in future development it is easy to add it.
+Actually, there is no full support to the description of remote actors but in future development it is easy to add it.
 
-Then, as explained the \textit{location} of the entities of the system can be describing using these annotations. The \href{https://github.com/LM-96/QA-Extensions/tree/main/it.unibo.ledsonardemo0}{\textcolor{Emerald}{\textbf{ledonarsystem0}}} example shows how it possible to use them.
+Then, as explained the \textit{location} of the entities of the system can be describing using these annotations. The \href{https://github.com/LM-96/QA-Extensions/tree/main/it.unibo.ledsonardemo0}{\textcolor{Emerald}{\textbf{ledonarsystem0}}} example shows how it is possible to use them.
 In this paper we just show the \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.ledsonardemo0/src/main/kotlin/it/unibo/ledsonardemo0/actors/SonarActor.kt}{SonarActor} end the \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.ledsonardemo0/src/main/kotlin/it/unibo/ledsonardemo0/actors/LedActor.kt}{LedActor}:
 
 \begin{lstlisting}[caption=\texttt{SonarActor} (\texttt{ledsonarsystem0}),language=Kotlin]
@@ -216,7 +216,7 @@ class LedActor(name : String, scope : CoroutineScope) :
 \end{lstlisting}
 
 With the others class that we have not reported here, the description of the actors of the system is completed. But the system can not be started yet because there are nothing able to make it run reading the annotations. It is needed a component that \textbf{scans all the classes and load the annotated one}.
-Indeed we have developed a new component called \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.qakactor/src/main/kotlin/annotations/AnnotationLoader.kt}{\textcolor{ForestGreen}{\texttt{AnnotationLoader}}} with the method 
+Indeed, we have developed a new component called \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.qakactor/src/main/kotlin/annotations/AnnotationLoader.kt}{\textcolor{ForestGreen}{\texttt{AnnotationLoader}}} with the method 
 \begin{center}
 	\begin{tabular}{c}
 		\begin{lstlisting}[frame=none,numbers=none,language=Kotlin]
@@ -246,7 +246,7 @@ Notice that this mechanism is added to the infrastructure as an extension and wi
 
 \subsection{New classes for injection}
 
-We remember that \href{https://github.com/anatali/issLab2021/blob/main/it.unibo.qakactor/src/main/kotlin/ActorBasic.kt}{ActorBasic} and \href{https://github.com/anatali/issLab2021/blob/main/it.unibo.qakactor/src/main/kotlin/ActorBasicFsm.kt}{ActorBasicFsm} classes are \textit{abstract} so it is not possible to directly create instances of this classes because of the definition of \textit{abstract}.
+We remember that \href{https://github.com/anatali/issLab2021/blob/main/it.unibo.qakactor/src/main/kotlin/ActorBasic.kt}{ActorBasic} and \href{https://github.com/anatali/issLab2021/blob/main/it.unibo.qakactor/src/main/kotlin/ActorBasicFsm.kt}{ActorBasicFsm} classes are \textit{abstract} so it is not possible to directly create instances of this classes because of the \textit{abstract} definition.
 For this reason we have created the two classes shown in the previous section and that are used from the builders: \texttt{ActorBasicWrapper} and \texttt{ActorBasicFsmWrapper} that takes the transient actor definitions and wrap them into \texttt{ActorBasic} or \texttt{ActorBasicFsm} instances.
 
 Now it is clear that a level of strong separation has been introduced between the \textcolor{ForestGreen}{\textbf{\textit{definition}}} of the actor system and the \textcolor{ForestGreen}{\textbf{\textit{runnable implementation}}} of it.
@@ -254,3 +254,28 @@ Now it is clear that a level of strong separation has been introduced between th
 In addition to this, the new \texttt{@QActor} annotation allow the developer to specify the actor's name directly into the proper annotation field. So, if the developer is forced to directly extends the \texttt{ActorBasic} class, he must always specify a constructor with the two parameter needed by the superclass as done in the previous listings.
 
 We want not only to avoid this but also to introduce \textbf{a new stronger level of separation} between the runnable part of the actor (represented by the \texttt{ActorBasic} inherited type) and the description (represented by the override of the proper methods).
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\textwidth]{img/[UML]QActorBasic_QActorBasicFsm_Auto}
+	\caption{\texttt{Q} and \texttt{AutoQ} classes}
+	\label{fig::q_autoq_classes}
+\end{figure}
+
+Then, first, we have created new classes in order to realize the separation: \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.qakactor/src/main/kotlin/QActorBasic.kt}{\texttt{QActorBasic}} and \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.qakactor/src/main/kotlin/QActorBasicFsm.kt}{\texttt{QActorBasicFsm}}. These two classes are illustrated in the figure \ref{fig::q_autoq_classes} can be used in order to define the behaviour of the actors (\textit{basic} or finite state machine) by extending them and adding other mechanisms such as some proper annotations that will be shown.
+
+However, the application designer can decide to insert some operations inside the behaviour that requires to be invoked on the \textit{runnable instance} of the actor he is developing. For this reason, the \texttt{QActorBasic} must anyway maintain the \textit{runnable part} that is the \texttt{ActorBasic} instance (and the correspondent \texttt{ActorBasicFsm} for the \texttt{QActorBasicFsm}) that unfortunately should be available only after the instantiation of the \texttt{Q} classes.
+
+As shown in figure \ref{fig::q_autoq_classes}, the main operations that require the executable instance are related with sending messages and events or performing \texttt{CoAP} updates or \texttt{Mqtt} interactions.
+
+The \texttt{QActorBasic} and \texttt{QActorBasicFsm} classes are very useful in order to define new methods for describing the behaviour of the actors, but they do not provide a full and complete mechanism for this.
+What the developer needs to put inside these classes? And above all, how it is possible to initialize the \texttt{ActorBasic} variable inside?
+
+We will answer to the first question in the next subsection. Indeed, for the second, we can say that the most easy and useful way to put the \texttt{ActorBasic} instance is by using reflection. So, the application designer writes the code to create an actor using \texttt{QActorBasic} and then the component able to load the class instantiates the related \texttt{ActorBasic} instance and inject it to the \texttt{Q} class.
+
+\subsection{\texttt{AutoQ} classes  [ \href{https://github.com/LM-96/QA-Extensions/tree/main/it.unibo.ledsonardemo1}{\textcolor{Emerald}{\textbf{ledonarsystem1}}} ]}
+
+In the figure \ref{fig::q_autoq_classes} are present two new classes that we have not clarified: \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.qakactor/src/main/kotlin/AutoQActorBasic.kt}{\texttt{AutoQActorBasic}} and \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.qakactor/src/main/kotlin/AutoQActorBasicFsm.kt}{\texttt{AutoQActorBasicFsm}}. They are very simple because their only work is to let the application designer to use the \textit{legacy} actor definition with the \textit{descriptive annotation} without forcing him to use the classical constructor of the \texttt{ActorBasic} or \texttt{ActorBasicFsm} classes.
+
+So, \textcolor{ForestGreen}{\textbf{it is possible to use the \texttt{@QActor} annotation with a class that extends \texttt{AutoQActorBasic}}} without specifying any parameter in the superclass constructor (and in this sense it is \textit{auto}).
+

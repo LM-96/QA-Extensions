@@ -1,8 +1,7 @@
-package it.unibo.ledsonardemo0.actors
+package it.unibo.ledsonardemo1.actors
 
 import it.unibo.kactor.ActorBasicFsm
 import it.unibo.kactor.AutoQActorBasicFsm
-import it.unibo.kactor.TimerActor
 import it.unibo.kactor.annotations.*
 import it.unibo.ledsonarsystem.TRESHOLD
 import kotlinx.coroutines.flow.first
