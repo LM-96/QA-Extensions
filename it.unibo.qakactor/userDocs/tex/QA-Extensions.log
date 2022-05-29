@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.1) (preloaded format=pdflatex 2022.1.31)  29 MAY 2022 19:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.1) (preloaded format=pdflatex 2022.1.31)  30 MAY 2022 01:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -70,6 +70,11 @@ File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen147
 \Gin@req@width=\dimen148
+) (C:\Users\Luca\AppData\Local\Programs\MiKTeX\tex/latex/appendix\appendix.sty
+Package: appendix 2020/02/08 v1.2c extra appendix facilities
+\c@@pps=\count196
+\c@@ppsavesec=\count197
+\c@@ppsaveapp=\count198
 ) (C:\Users\Luca\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
 Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
 )
@@ -80,13 +85,13 @@ Package: inputenc 2021/02/14 v1.3d Input encoding file
 )
 (C:\Users\Luca\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.sty
 Package: babel 2021/12/30 3.69 The Babel package
-\babel@savecnt=\count196
+\babel@savecnt=\count199
 \U@D=\dimen149
 \l@unhyphenated=\language79
 
 (C:\Users\Luca\AppData\Local\Programs\MiKTeX\tex/generic/babel\txtbabel.def)
 \bbl@readstream=\read2
-\bbl@dirlevel=\count197
+\bbl@dirlevel=\count266
 
 *************************************
 * Local config file bblopts.cfg used
@@ -119,7 +124,7 @@ Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
 ))
 (C:\Users\Luca\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count198
+\etb@tempcnta=\count267
 ))
 (C:\Users\Luca\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption.sty
 Package: caption 2020/10/26 v3.5g Customizing captions (AR)
@@ -135,8 +140,8 @@ Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
 \caption@hangindent=\dimen156
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count199
-\c@continuedfloat=\count266
+\c@caption@flags=\count268
+\c@continuedfloat=\count269
 )
 (C:\Users\Luca\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
 Package: hyperref 2021-06-07 v7.00m Hypertext links for LaTeX
@@ -171,8 +176,8 @@ Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
 Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 )
 \@linkdim=\dimen157
-\Hy@linkcounter=\count267
-\Hy@pagecounter=\count268
+\Hy@linkcounter=\count270
+\Hy@pagecounter=\count271
  (C:\Users\Luca\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
 File: pd1enc.def 2021-06-07 v7.00m Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
@@ -189,7 +194,7 @@ Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 (C:\Users\Luca\AppData\Local\Programs\MiKTeX\tex/generic/etexcmds\etexcmds.sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
-\Hy@SavedSpaceFactor=\count269
+\Hy@SavedSpaceFactor=\count272
 (C:\Users\Luca\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def
 File: puenc.def 2021-06-07 v7.00m Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
@@ -202,7 +207,7 @@ Package hyperref Info: Plain pages OFF on input line 4207.
 Package hyperref Info: Backreferencing OFF on input line 4212.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4445.
-\c@Hy@tempcnt=\count270
+\c@Hy@tempcnt=\count273
 
 (C:\Users\Luca\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
 \Urlmuskip=\muskip16
@@ -219,7 +224,7 @@ sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count271
+\Fld@menulength=\count274
 \Field@Width=\dimen159
 \Fld@charsize=\dimen160
 Package hyperref Info: Hyper figures OFF on input line 6076.
@@ -236,9 +241,9 @@ LaTeX Info: Redefining \pageref on input line 6150.
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
-\Hy@abspage=\count272
-\c@Item=\count273
-\c@Hfootnote=\count274
+\Hy@abspage=\count275
+\c@Item=\count276
+\c@Hfootnote=\count277
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 
@@ -250,8 +255,8 @@ Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
 kage
 with kernel methods
 )
-\Fld@listcount=\count275
-\c@bookmark@seq@number=\count276
+\Fld@listcount=\count278
+\c@bookmark@seq@number=\count279
 
 (C:\Users\Luca\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerunfile
 check.sty
@@ -278,12 +283,12 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \cmidrulesep=\dimen168
 \cmidrulekern=\dimen169
 \defaultaddspace=\dimen170
-\@cmidla=\count277
-\@cmidlb=\count278
+\@cmidla=\count280
+\@cmidlb=\count281
 \@aboverulesep=\dimen171
 \@belowrulesep=\dimen172
-\@thisruleclass=\count279
-\@lastruleclass=\count280
+\@thisruleclass=\count282
+\@lastruleclass=\count283
 \@thisrulewidth=\dimen173
 )
 (C:\Users\Luca\AppData\Local\Programs\MiKTeX\tex/latex/tools\tabularx.sty
@@ -304,35 +309,35 @@ Package: array 2021/10/04 v2.5f Tabular extension package (FMi)
 \TX@old@col=\dimen178
 \TX@target=\dimen179
 \TX@delta=\dimen180
-\TX@cols=\count281
+\TX@cols=\count284
 \TX@ftn=\toks21
 )
 (C:\Users\Luca\AppData\Local\Programs\MiKTeX\tex/latex/wrapfig\wrapfig.sty
 \wrapoverhang=\dimen181
 \WF@size=\dimen182
-\c@WF@wrappedlines=\count282
+\c@WF@wrappedlines=\count285
 \WF@box=\box52
 \WF@everypar=\toks22
 Package: wrapfig 2003/01/31  v 3.6
 )
 (C:\Users\Luca\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.sty
-\lst@mode=\count283
+\lst@mode=\count286
 \lst@gtempboxa=\box53
 \lst@token=\toks23
-\lst@length=\count284
+\lst@length=\count287
 \lst@currlwidth=\dimen183
-\lst@column=\count285
-\lst@pos=\count286
+\lst@column=\count288
+\lst@pos=\count289
 \lst@lostspace=\dimen184
 \lst@width=\dimen185
-\lst@newlines=\count287
-\lst@lineno=\count288
+\lst@newlines=\count290
+\lst@lineno=\count291
 \lst@maxwidth=\dimen186
 
 (C:\Users\Luca\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
 File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
-\c@lstnumber=\count289
-\lst@skipnumbers=\count290
+\c@lstnumber=\count292
+\lst@skipnumbers=\count293
 \lst@framebox=\box54
 )
 (C:\Users\Luca\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.cfg
@@ -363,29 +368,29 @@ File: dvipsnam.def 2016/06/17 v3.0m Driver-dependent file (DPC,SPQR)
 (C:\Users\Luca\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdft
 ex.def
 File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count291
+\l__color_backend_stack_int=\count294
 \l__pdf_internal_box=\box55
 ) (QA-Extensions.aux)
 \openout1 = `QA-Extensions.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -425,16 +430,16 @@ LaTeX Font Info:    ... okay on input line 64.
 (C:\Users\Luca\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mki
 i
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count292
+\scratchcounter=\count295
 \scratchdimen=\dimen187
 \scratchbox=\box56
-\nofMPsegments=\count293
-\nofMParguments=\count294
+\nofMPsegments=\count296
+\nofMParguments=\count297
 \everyMPshowfont=\toks24
-\MPscratchCnt=\count295
+\MPscratchCnt=\count298
 \MPscratchDim=\dimen188
-\MPnumerator=\count296
-\makeMPintoPDFobject=\count297
+\MPnumerator=\count299
+\makeMPintoPDFobject=\count300
 \everyMPtoPDFconversion=\toks25
 )
 (C:\Users\Luca\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-ba
@@ -459,7 +464,7 @@ Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring OFF on input line 64.
+Package hyperref Info: Link coloring OFF on input line 65.
  (C:\Users\Luca\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
 (C:\Users\Luca\AppData\Local\Programs\MiKTeX\tex/latex/refcount\refcount.sty
@@ -469,20 +474,20 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 estring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count298
+\c@section@level=\count301
 )
-LaTeX Info: Redefining \ref on input line 64.
-LaTeX Info: Redefining \pageref on input line 64.
-LaTeX Info: Redefining \nameref on input line 64.
+LaTeX Info: Redefining \ref on input line 65.
+LaTeX Info: Redefining \pageref on input line 65.
+LaTeX Info: Redefining \nameref on input line 65.
  (QA-Extensions.out) (QA-Extensions.out)
 \@outlinefile=\write3
 \openout3 = `QA-Extensions.out'.
 
-\c@lstlisting=\count299
+\c@lstlisting=\count302
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14.4> on input line 66.
+(Font)              <14.4> on input line 67.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 66.
+(Font)              <7> on input line 67.
  (section/00_abstract.tex
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 5
 .
@@ -509,7 +514,7 @@ LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <14.4> not available
 
 pdfTeX warning: pdflatex.exe (file ./img/[UML]it.unibo.kaktor.model.pdf): PDF i
 nclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<img/[UML]it.unibo.kaktor.model.pdf, id=85, 522.99388pt x 500.83109pt>
+<img/[UML]it.unibo.kaktor.model.pdf, id=101, 522.99388pt x 500.83109pt>
 File: img/[UML]it.unibo.kaktor.model.pdf Graphic file (type pdf)
 <use img/[UML]it.unibo.kaktor.model.pdf>
 Package pdftex.def Info: img/[UML]it.unibo.kaktor.model.pdf  used on input line
@@ -525,7 +530,7 @@ LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <12> not available
 pdfTeX warning: pdflatex.exe (file ./img/[UML]it.unibo.kaktor.model.actorbody_o
 nlyactorbody.pdf): PDF inclusion: found PDF version <1.7>, but at most version 
 <1.5> allowed
-<img/[UML]it.unibo.kaktor.model.actorbody_onlyactorbody.pdf, id=123, 491.91779p
+<img/[UML]it.unibo.kaktor.model.actorbody_onlyactorbody.pdf, id=139, 491.91779p
 t x 509.98529pt>
 File: img/[UML]it.unibo.kaktor.model.actorbody_onlyactorbody.pdf Graphic file (
 type pdf)
@@ -538,7 +543,7 @@ Package pdftex.def Info: img/[UML]it.unibo.kaktor.model.actorbody_onlyactorbody
 pdfTeX warning: pdflatex.exe (file ./img/[UML]it.unibo.kaktor.model.actorbody_o
 nlystatebody.pdf): PDF inclusion: found PDF version <1.7>, but at most version 
 <1.5> allowed
-<img/[UML]it.unibo.kaktor.model.actorbody_onlystatebody.pdf, id=162, 483.72719p
+<img/[UML]it.unibo.kaktor.model.actorbody_onlystatebody.pdf, id=178, 483.72719p
 t x 277.035pt>
 File: img/[UML]it.unibo.kaktor.model.actorbody_onlystatebody.pdf Graphic file (
 type pdf)
@@ -557,7 +562,7 @@ Overfull \hbox (6.21895pt too wide) in paragraph at lines 3--3
 pdfTeX warning: pdflatex.exe (file ./img/[UML]it.unibo.kaktor.builders_actorb_c
 ontextb_systemb.pdf): PDF inclusion: found PDF version <1.7>, but at most versi
 on <1.5> allowed
-<img/[UML]it.unibo.kaktor.builders_actorb_contextb_systemb.pdf, id=198, 638.385
+<img/[UML]it.unibo.kaktor.builders_actorb_contextb_systemb.pdf, id=214, 638.385
 pt x 794.97pt>
 File: img/[UML]it.unibo.kaktor.builders_actorb_contextb_systemb.pdf Graphic fil
 e (type pdf)
@@ -583,7 +588,7 @@ Overfull \hbox (13.51636pt too wide) in paragraph at lines 24--26
 pdfTeX warning: pdflatex.exe (file ./img/[UML]it.unibo.kaktor.builders_stateb_t
 ransitionb.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1
 .5> allowed
-<img/[UML]it.unibo.kaktor.builders_stateb_transitionb.pdf, id=233, 558.16531pt 
+<img/[UML]it.unibo.kaktor.builders_stateb_transitionb.pdf, id=249, 558.16531pt 
 x 342.31888pt>
 File: img/[UML]it.unibo.kaktor.builders_stateb_transitionb.pdf Graphic file (ty
 pe pdf)
@@ -605,7 +610,7 @@ Overfull \hbox (13.35617pt too wide) in paragraph at lines 45--47
 pdfTeX warning: pdflatex.exe (file ./img/[UML]it.unibo.kaktor.builders_wrapper.
 pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
 
-<img/[UML]it.unibo.kaktor.builders_wrapper.pdf, id=243, 587.3142pt x 210.7875pt
+<img/[UML]it.unibo.kaktor.builders_wrapper.pdf, id=259, 587.3142pt x 210.7875pt
 >
 File: img/[UML]it.unibo.kaktor.builders_wrapper.pdf Graphic file (type pdf)
 <use img/[UML]it.unibo.kaktor.builders_wrapper.pdf>
@@ -616,7 +621,7 @@ Package pdftex.def Info: img/[UML]it.unibo.kaktor.builders_wrapper.pdf  used on
 
 pdfTeX warning: pdflatex.exe (file ./img/[EG]simple_echo_actor_diagram.pdf): PD
 F inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<img/[EG]simple_echo_actor_diagram.pdf, id=246, 492.88138pt x 90.3375pt>
+<img/[EG]simple_echo_actor_diagram.pdf, id=262, 492.88138pt x 90.3375pt>
 File: img/[EG]simple_echo_actor_diagram.pdf Graphic file (type pdf)
 <use img/[EG]simple_echo_actor_diagram.pdf>
 Package pdftex.def Info: img/[EG]simple_echo_actor_diagram.pdf  used on input l
@@ -659,7 +664,7 @@ Overfull \hbox (18.64664pt too wide) in paragraph at lines 147--154
 
 pdfTeX warning: pdflatex.exe (file ./img/[EG]led_sonar_actor_diagram.pdf): PDF 
 inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<img/[EG]led_sonar_actor_diagram.pdf, id=354, 598.15468pt x 659.5842pt>
+<img/[EG]led_sonar_actor_diagram.pdf, id=370, 598.15468pt x 659.5842pt>
 File: img/[EG]led_sonar_actor_diagram.pdf Graphic file (type pdf)
 <use img/[EG]led_sonar_actor_diagram.pdf>
 Package pdftex.def Info: img/[EG]led_sonar_actor_diagram.pdf  used on input lin
@@ -672,7 +677,7 @@ eive dis-patch \T1/cmtt/m/n/12 ledCmd(CMD)
  []
 
 [11 <./img/[EG]led_sonar_actor_diagram.pdf>]
-<img/[EG]led_sonar_actor_gui.png, id=396, 855.94781pt x 374.14781pt>
+<img/[EG]led_sonar_actor_gui.png, id=412, 855.94781pt x 374.14781pt>
 File: img/[EG]led_sonar_actor_gui.png Graphic file (type png)
 <use img/[EG]led_sonar_actor_gui.png>
 Package pdftex.def Info: img/[EG]led_sonar_actor_gui.png  used on input line 44
@@ -691,7 +696,7 @@ po-nent called [][]\T1/cmtt/m/n/12 QakLauncher.kt[][]
 
 pdfTeX warning: pdflatex.exe (file ./img/[UML]QActorBasic_QActorBasicFsm_Auto.p
 df): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<img/[UML]QActorBasic_QActorBasicFsm_Auto.pdf, id=552, 528.05281pt x 368.33609p
+<img/[UML]QActorBasic_QActorBasicFsm_Auto.pdf, id=568, 528.05281pt x 368.33609p
 t>
 File: img/[UML]QActorBasic_QActorBasicFsm_Auto.pdf Graphic file (type pdf)
 <use img/[UML]QActorBasic_QActorBasicFsm_Auto.pdf>
@@ -701,18 +706,44 @@ input line 260.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[16]) [17 <./img/[UML]QActorBasic_QActorBasicFsm_Auto.pdf>] (QA-Extensions.aux)
+[16] [17 <./img/[UML]QActorBasic_QActorBasicFsm_Auto.pdf>]
+Overfull \hbox (61.01093pt too wide) in paragraph at lines 309--310
+[]\T1/cmr/m/n/12 Indeed, we have cre-ated new an-no-ta-tions that can be used i
+n \T1/cmtt/m/n/12 QActorBasic \T1/cmr/m/n/12 and \T1/cmtt/m/n/12 QActorBasicFsm
+\T1/cmr/m/n/12 : 
+ []
+
+
+Overfull \hbox (21.37137pt too wide) in paragraph at lines 326--328
+\T1/cmr/m/it/12 This sim-ple an-no-ta-tion is ap-pli-ca-ble to a method of a cl
+ass that ex-tends \T1/cmtt/m/it/12 QActorBasicFsm\T1/cmr/m/it/12 )
+ []
+
+[18]
+Overfull \hbox (16.57254pt too wide) in paragraph at lines 382--384
+\T1/cmr/m/it/12 This sim-ple an-no-ta-tion is ap-pli-ca-ble to a method of a cl
+ass that ex-tends \T1/cmtt/m/it/12 QActorBasicFsm
+ []
+
+[19] [20] [21]) (section/05_conclusions.tex
+Overfull \hbox (36.84877pt too wide) in paragraph at lines 9--10
+[]\T1/cmr/bx/n/12 using only the \T1/cmr/bx/it/12 de-scrip-tive an-no-ta-tion \
+T1/cmr/m/n/12 with the legacy \T1/cmtt/m/n/12 ActorBasic \T1/cmr/m/n/12 and \T1
+/cmtt/m/n/12 ActorBasicFsm
+ []
+
+) (section/aA_additional_annotations.tex [22]) [23] (QA-Extensions.aux)
 Package rerunfilecheck Info: File `QA-Extensions.out' has not changed.
-(rerunfilecheck)             Checksum: 7B661E42E458450FA6A0F5DEBD07B012;3113.
+(rerunfilecheck)             Checksum: EEB837F84CFB74E0EF584D56529F027E;3786.
  ) 
 Here is how much of TeX's memory you used:
- 14703 strings out of 478593
- 238329 string characters out of 2845076
- 596037 words of memory out of 3000000
- 32425 multiletter control sequences out of 15000+600000
- 487668 words of font info for 63 fonts, out of 8000000 for 9000
+ 15124 strings out of 478593
+ 244895 string characters out of 2845076
+ 597536 words of memory out of 3000000
+ 32639 multiletter control sequences out of 15000+600000
+ 489214 words of font info for 65 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 60i,14n,63p,742b,2062s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,14n,63p,842b,2065s stack positions out of 5000i,500n,10000p,200000b,80000s
 {C:/Users/Luca/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/cm-super/cm-supe
 r-t1.enc}{C:/Users/Luca/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/cm-super/
 cm-super-ts1.enc}<C:/Users/Luca/AppData/Local/Programs/MiKTeX/fonts/type1/publi
@@ -722,24 +753,26 @@ ts/type1/public/cm-super/sfbx1200.pfb><C:/Users/Luca/AppData/Local/Programs/MiK
 TeX/fonts/type1/public/cm-super/sfbx1440.pfb><C:/Users/Luca/AppData/Local/Progr
 ams/MiKTeX/fonts/type1/public/cm-super/sfbx1728.pfb><C:/Users/Luca/AppData/Loca
 l/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx2074.pfb><C:/Users/Luca/AppDa
-ta/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfit1200.pfb><C:/Users/Luc
-a/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfrm0600.pfb><C:/Us
-ers/Luca/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfrm0700.pfb
+ta/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx2488.pfb><C:/Users/Luc
+a/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfit1200.pfb><C:/Us
+ers/Luca/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfrm0600.pfb
 ><C:/Users/Luca/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfrm0
-800.pfb><C:/Users/Luca/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-supe
-r/sfrm1000.pfb><C:/Users/Luca/AppData/Local/Programs/MiKTeX/fonts/type1/public/
-cm-super/sfrm1200.pfb><C:/Users/Luca/AppData/Local/Programs/MiKTeX/fonts/type1/
-public/cm-super/sfrm1440.pfb><C:/Users/Luca/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/cm-super/sfss1000.pfb><C:/Users/Luca/AppData/Local/Programs/MiKTe
-X/fonts/type1/public/cm-super/sfsx1000.pfb><C:/Users/Luca/AppData/Local/Program
-s/MiKTeX/fonts/type1/public/cm-super/sfti1000.pfb><C:/Users/Luca/AppData/Local/
-Programs/MiKTeX/fonts/type1/public/cm-super/sfti1200.pfb><C:/Users/Luca/AppData
-/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sftt1000.pfb><C:/Users/Luca/
-AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sftt1200.pfb><C:/User
-s/Luca/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sftt1440.pfb>
-Output written on QA-Extensions.pdf (17 pages, 1037034 bytes).
+700.pfb><C:/Users/Luca/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-supe
+r/sfrm0800.pfb><C:/Users/Luca/AppData/Local/Programs/MiKTeX/fonts/type1/public/
+cm-super/sfrm1000.pfb><C:/Users/Luca/AppData/Local/Programs/MiKTeX/fonts/type1/
+public/cm-super/sfrm1200.pfb><C:/Users/Luca/AppData/Local/Programs/MiKTeX/fonts
+/type1/public/cm-super/sfrm1440.pfb><C:/Users/Luca/AppData/Local/Programs/MiKTe
+X/fonts/type1/public/cm-super/sfss1000.pfb><C:/Users/Luca/AppData/Local/Program
+s/MiKTeX/fonts/type1/public/cm-super/sfsx1000.pfb><C:/Users/Luca/AppData/Local/
+Programs/MiKTeX/fonts/type1/public/cm-super/sfti1000.pfb><C:/Users/Luca/AppData
+/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfti1200.pfb><C:/Users/Luca/
+AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sftt1000.pfb><C:/User
+s/Luca/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sftt1200.pfb><
+C:/Users/Luca/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sftt144
+0.pfb>
+Output written on QA-Extensions.pdf (23 pages, 1129062 bytes).
 PDF statistics:
- 740 PDF objects out of 1000 (max. 8388607)
- 232 named destinations out of 1000 (max. 500000)
- 163 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1032 PDF objects out of 1200 (max. 8388607)
+ 428 named destinations out of 1000 (max. 500000)
+ 195 words of extra memory for PDF output out of 10000 (max. 10000000)
 

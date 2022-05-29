@@ -41,6 +41,7 @@ class SonarActor : QActorBasicFsm() {
     @EpsilonMove("t3", "work")
     suspend fun answareWithActual() {
         actorPrintln("Received request: $currentMsg")
+        answer("readDistance", "readedDistance", "readedDistance($distance)")
         replyTo request "readDistance" with "readedDistance" withArgs "$distance"
         actorPrintln("Replied with distance [$distance]")
     }

@@ -111,7 +111,7 @@ So the first step is \textcolor{ForestGreen}{\textbf{to develop some annotations
 Actually, there is no full support to the description of remote actors but in future development it is easy to add it.
 
 Then, as explained the \textit{location} of the entities of the system can be describing using these annotations. The \href{https://github.com/LM-96/QA-Extensions/tree/main/it.unibo.ledsonardemo0}{\textcolor{Emerald}{\textbf{ledonarsystem0}}} example shows how it is possible to use them.
-In this paper we just show the \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.ledsonardemo0/src/main/kotlin/it/unibo/ledsonardemo0/actors/SonarActor.kt}{SonarActor} end the \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.ledsonardemo0/src/main/kotlin/it/unibo/ledsonardemo0/actors/LedActor.kt}{LedActor}:
+In this paper we just show the \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.ledsonardemo0/src/main/kotlin/it/unibo/ledsonardemo0/actors/SonarActor.kt}{SonarActor} and the \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.ledsonardemo0/src/main/kotlin/it/unibo/ledsonardemo0/actors/LedActor.kt}{LedActor}:
 
 \begin{lstlisting}[caption=\texttt{SonarActor} (\texttt{ledsonarsystem0}),language=Kotlin]
 @QActor("ctxLedSonarAbFsmDemo")
@@ -279,3 +279,239 @@ In the figure \ref{fig::q_autoq_classes} are present two new classes that we hav
 
 So, \textcolor{ForestGreen}{\textbf{it is possible to use the \texttt{@QActor} annotation with a class that extends \texttt{AutoQActorBasic}}} without specifying any parameter in the superclass constructor (and in this sense it is \textit{auto}).
 
+For example, consider the \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.ledsonardemo1/src/main/kotlin/it/unibo/ledsonardemo1/actors/SonarActor.kt}{\texttt{SonarActor}} in the \href{https://github.com/LM-96/QA-Extensions/tree/main/it.unibo.ledsonardemo1}{\textcolor{Emerald}{\textbf{ledonarsystem1}}}. With these new classes the code becomes:
+
+
+\begin{lstlisting}[caption=\texttt{SonarActor} (\texttt{ledsonarsystem1}), language=Kotlin]
+	@QActor("ctxLedSonarAutoQAbFsmDemo")
+	class SonarActor : AutoQActorBasicFsm() {
+		
+		/* ... [same definition od variables of ledsonarsystem0] ... */
+		
+		override fun getBody(): ActorBasicFsm.() -> Unit {
+			/* ... [ same code of ledsonarsystem0 ] ... */
+		}
+		
+		override fun getInitialState(): String {
+			/* ... [ same code of ledsonarsystem0 ] ... */
+		}
+		
+	}
+\end{lstlisting}
+
+As we can see there are no \verb|name : String| and \verb|scope : CoroutineScope| parameters in the constructor like the previous version.
+Nothing else to say about these two classes.
+
+\subsection{Behavioural annotations [ \href{https://github.com/LM-96/QA-Extensions/tree/main/it.unibo.ledsonardemo2}{\textcolor{Emerald}{\textbf{ledonarsystem2}}} ]}
+
+At this point we have some annotations the developer can use to describe and \textit{identify} actors and contexts in the system instead of using the old \texttt{.pl} files. In addition to this, we have provided the new classes \texttt{QActorBasic} and \texttt{QActorBasicFsm} that open the way to new mechanisms to define the behaviour.
+
+Indeed, we have created new annotations that can be used in \texttt{QActorBasic} and \texttt{QActorBasicFsm}:
+
+\begin{itemize}
+	\item \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.qakactor/src/main/kotlin/annotations/ActorBody.kt}{\textcolor{YellowOrange}{\underline{\texttt{ActorBody}}}}:\\
+	\textit{This annotation is applicable to a method of a class that extends \texttt{QActorBasic} and represents the classical body of \texttt{ActorBasic}. \textbf{The signature of the marked method must be the same of the \texttt{ActorBasic\#actorBody()}, so it must return \texttt{Unit} and take one and only one \texttt{IApplMessage} input parameter.}}
+	\begin{lstlisting}[numbers=none,language=Kotlin]
+		annotation class ActorBody()
+	\end{lstlisting}
+	
+	\item \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.qakactor/src/main/kotlin/annotations/State.kt}{\textcolor{YellowOrange}{\underline{\texttt{State}}}}:\\
+	\textit{This annotation is applicable to a method of a class that extends \texttt{QActorBasicFsm}) and represents a state with a name and a body that is the method that is marked. The name can also be not present and in this case it is taken from the name of the method the annotation is marking. \textbf{The marked method must has no input parameter while the return type is ignored}.}
+	\begin{lstlisting}[numbers=none,language=Kotlin]
+		annotation class State(
+			val name : String = ""
+		)
+	\end{lstlisting}
+	
+	\item \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.qakactor/src/main/kotlin/annotations/State.kt}{\textcolor{YellowOrange}{\underline{\texttt{Initial}}}}:\\
+	\textit{This simple annotation is applicable to a method of a class that extends \texttt{QActorBasicFsm}) and marks the state that is the initial for a finite state actor.}
+	\begin{lstlisting}[numbers=none,language=Kotlin]
+		annotation class Initial()
+	\end{lstlisting}
+	
+	\item \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.qakactor/src/main/kotlin/annotations/Transitions.kt}{
+		\textcolor{YellowOrange}{\underline{\texttt{EpsilonMove}}},
+		\textcolor{YellowOrange}{\underline{\texttt{WhenDispatch}}}, \textcolor{YellowOrange}{\underline{\texttt{WhenReply}}},
+		\textcolor{YellowOrange}{\underline{\texttt{WhenEvent}}},
+		\textcolor{YellowOrange}{\underline{\texttt{WhenInvitation}}},
+		\textcolor{YellowOrange}{\underline{\texttt{WhenTime}}}}:\\
+	\textit{This group of annotations represents the transitions that can be performed by a finite state machine after the execution of the body of a state. So, \textbf{all of these annotations have sense if put to a method that has the \texttt{@State} annotation} and define the transition to be \textit{invoked} after the referred state body is executed. Notice that these annotations are \href{https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-repeatable/}{\texttt{Repeatable}} so it is possible to link more than one transition of the same type to the same state (particularly useful for \textit{guarded} transitions). All of them has an \texttt{edgeName} and a \texttt{targetState} and others parameters based on the type of the transition.}
+	\begin{lstlisting}[numbers=none,language=Kotlin]
+		annotation class EpsilonMove(
+			val edgeName : String,
+			val targetState : String
+		)
+		
+		annotation class WhenDispatch(
+			val edgeName : String,
+			val targetState : String,
+			val messageName : String
+		)
+		
+		annotation class WhenRequest(
+			val edgeName : String,
+			val targetState : String,
+			val messageName : String
+		)
+		
+		annotation class WhenReply(
+			val edgeName : String,
+			val targetState : String,
+			val messageName : String
+		)
+		
+		annotation class WhenInvitation(
+			val edgeName : String,
+			val targetState : String,
+			val messageName : String
+		)
+		
+		annotation class WhenEvent(
+			val edgeName : String,
+			val targetState : String,
+			val eventName : String
+		)
+		
+		annotation class WhenTime(
+			val edgeName : String,
+			val targetState : String,
+			val millis : Long
+		)
+	\end{lstlisting}
+
+	\item \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.qakactor/src/main/kotlin/annotations/Transitions.kt}{\textcolor{YellowOrange}{\underline{\texttt{GuardFor}}}}:\\
+	\textit{This simple annotation is applicable to a method of a class that extends \texttt{QActorBasicFsm} and marks a method that is the \textit{guard} for an existing transition. \textbf{The method marked with this annotation must imperatively have no input parameters and return a \texttt{Boolean}} that is \texttt{true} if the referred transition has to be performed depending on the guard or \texttt{false} otherwise. The association between the guard and the transition is made by the \texttt{transitionEdgeName} parameter of this annotation and the state to reach if the guard is \texttt{false} is maintained by the \texttt{elseTarget} variable that can be empty if no state has to be reached.}
+	\begin{lstlisting}[numbers=none,language=Kotlin]
+		annotation class GuardFor(
+		val transitionEdgeName : String,
+		val elseTarget : String = ""
+	)
+	\end{lstlisting}
+\end{itemize}
+
+So the \texttt{AnnotationLoader} has been extended in order to support these new annotations letting the software developer to use them in order to define not only the actors and the contexts that are present but also their behaviour, their states and their actions.
+
+The \href{https://github.com/LM-96/QA-Extensions/tree/main/it.unibo.ledsonardemo2}{\textcolor{Emerald}{\textbf{ledonarsystem2}}} example shows how it is possible to use these new annotations.
+In this paper we just show the \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.ledsonardemo0/src/main/kotlin/it/unibo/ledsonardemo2/actors/SonarActor.kt}{SonarActor} and the \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.ledsonardemo0/src/main/kotlin/it/unibo/ledsonardemo2/actors/LedActor.kt}{LedActor} as previously done:
+
+\begin{lstlisting}[caption=\texttt{SonarActor} (\texttt{ledsonarsystem2}),language=Kotlin]
+	@QActor("ctxLedSonarQAbFsmDemo")
+	class SonarActor : QActorBasicFsm() {
+		
+		var distance = -1
+		var prevDistance = distance
+		val sonar = SYSTEM_SONAR
+		
+		@Initial
+		@State
+		@EpsilonMove("t0", "work")
+		suspend fun begin() {
+		}
+		
+		
+		@State
+		@WhenTime("t1", "readSonar", 2000)
+		@WhenRequest("t2", "answareWithActual", "readDistance")
+		suspend fun work() {
+		}
+		
+		@State
+		@EpsilonMove("t2", "work")
+		suspend fun readSonar() {
+			prevDistance = distance
+			distance = sonar.read()
+			if(prevDistance != distance) {
+				emit("sonarDistance", "sonarDistance($distance)")
+			}
+		}
+		
+		@State
+		@EpsilonMove("t3", "work")
+		suspend fun answareWithActual() {
+			answer("readDistance", "readedDistance", "readedDistance($distance)")
+		}
+		
+	}
+\end{lstlisting}
+
+\begin{lstlisting}[caption=\texttt{LedActor (\texttt{ledsonarsystem2})},language=Kotlin]
+	@QActor("ctxLedSonarQAbFsmDemo")
+	class LedActor : QActorBasicFsm() {
+		
+		val led = SYSTEM_LED
+		
+		@Initial
+		@State
+		@EpsilonMove("t0", "work")
+		suspend fun begin() {
+		}
+		
+		@State
+		@WhenDispatch("t1", "handleLedCmd", "ledCmd")
+		suspend fun work() {
+		}
+		
+		@State
+		@EpsilonMove("t2", "work")
+		suspend fun handleLedCmd() {
+			actorPrintln("Current command: $currentMsg")
+			try {
+				when(val ledCmdArg = currentMessageArgs[0]) {
+					"OFF", "off" -> {
+						if(led.isPoweredOn()) {
+							led.powerOff()
+							actorPrintln("Led powered off")
+						}
+					}
+					"ON", "on" -> {
+						if(led.isPoweredOff()) {
+							led.powerOn()
+							actorPrintln("Led powered on")
+						}
+					}
+					else -> {}
+				}
+			} catch (e : Exception) {
+				e.printStackTrace()
+			}
+		}
+		
+	}
+\end{lstlisting}
+
+Notice that nothing has changed in the \texttt{App.kt} file but simply the \texttt{AnnotationLoader} has been extended as we already said.
+
+\subsection{Infix Functions}
+
+\texttt{Kotlin} let the developer write functions with the \href{https://kotlinlang.org/docs/functions.html#infix-notation}{\textbf{infix notation}}.
+
+Thanks to this possibility we can make the code smarter defining some infix function for sending messages, emitting events and updating \texttt{CoAP} states. For more details about that, see the implementations of \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.qakactor/src/main/kotlin/QActorBasic.kt}{\texttt{QActorBasic}} and \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.qakactor/src/main/kotlin/QActorBasicFsm.kt}{\texttt{QActorBasicFsm}} classes.
+
+We only show some \textit{smart} way to do these operations:
+\begin{lstlisting}[language=kotlin, morekeywords={emit, event, withArgs, send, dispatch, request, replyTo, with, update, resource, arg}]
+	/* Emits the event "eventName(arg0,arg1,arg2)" */
+	emit event "eventName" withArgs "arg0,arg1,arg2"
+	
+	/* Emits the event "eventName(arg0,arg1,arg2)" (smart syntax for args)
+	   This syntax can be use with all 'withArg' keywords	*/
+	emit event "eventName" withArgs arg ["arg0", "arg1", "arg2"]
+	
+	/* Sends the dispatch "dispatchName(arg0,arg1)" to "destActor" */
+	send dispatch "dispatchName" to "destActor" withArgs "arg0,arg1"
+	
+	/* Sends the request "requestName(arg0,arg1,arg2,arg3)" to "destActor" */
+	send request "requestName" to "destActor" withArgs "arg0,arg1,arg2,arg3"
+	
+	/* Answers to request "requestName" with the reply "replyName(arg0)" */
+	replyTo request "requestName" with "replyName" withArgs "arg0"
+	
+	/* Updates the CoAP resource */
+	update resource "new coap update"
+	
+\end{lstlisting}
+ 
+We underline that are present two types of primitives for the argument of messages:
+\begin{itemize}
+	\item by using \textbf{\texttt{withArgs}} keyword that adds the arguments to the message using the same syntax of the classical \texttt{QAK} DSL;
+	\item by using \textbf{\texttt{withContext}} keyword that directly put the raw contents into the message. 
+\end{itemize}

@@ -2,6 +2,7 @@
 
 \usepackage{geometry}
 \usepackage{graphicx}
+\usepackage{appendix}
 
 \geometry{a4paper,top=2.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm}
 \usepackage[T1]{fontenc}
@@ -35,7 +36,8 @@
 	numberstyle=\tiny\color{gray},
 	showspaces=false,
 	showstringspaces=false,
-	tabsize=1
+	tabsize=1,
+	literate={\$}{{\textcolor{orange}{\$}}}1,
 }
 
 \lstdefinelanguage{Kotlin}{
@@ -50,8 +52,7 @@
 	morestring=[b]",
 	morestring=[s]{"""*}{*"""},
 	ndkeywords={@Deprecated, @JvmField, @JvmName, @JvmOverloads, @JvmStatic, @JvmSynthetic, Array, Byte, Double, Float, Int, Integer, Iterable, Long, Runnable, Short, String, Any, Unit, Nothing, @QActor,
-	@QakContext, @HostName, @State, @Initial, @WhenDispatch, @WhenRequest, @WhenReply, @WhenEvent,
-	state, action, transition},
+	@QakContext, @HostName, @State, @Initial, @WhenDispatch, @WhenRequest, @WhenReply, @WhenEvent, @EpsilonMove, @WhenTime, state, action, transition},
 	ndkeywordstyle={\color{BurntOrange}\bfseries},
 	sensitive=true,
 	stringstyle={\color{ForestGreen}\ttfamily},
@@ -70,6 +71,10 @@
 \input{section/02_the_transient_model.tex}
 \input{section/03_the_builder_mechanism.tex}
 \input{section/04_annotations.tex}
+\input{section/05_conclusions.tex}
+\appendix
+\appendixpage
+\input{section/aA_additional_annotations.tex}
 %----------------------------------------------------------------------------------------
 
 \end{document}

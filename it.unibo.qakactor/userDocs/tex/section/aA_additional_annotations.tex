@@ -1,0 +1,33 @@
+\section{Additional annotations}
+
+In addition to the \textit{descriptive annotations} that have already been presented, we develop some other annotations in order to configure the system for \textit{loggin} or \texttt{Mqtt}:
+
+\begin{itemize}
+	\item \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.qakactor/src/main/kotlin/annotations/MqttBroker.kt}{\textcolor{YellowOrange}{\underline{\texttt{MqttBroker}}}}:\\
+	\textit{This annotation is applicable to a class (preferably the same of the \texttt{@QakContext} annotation) and specify the \texttt{Mqtt Broker} of the system like the original \texttt{DSL}.}
+	\begin{lstlisting}[numbers=none,language=Kotlin]
+		annotation class MqttBroker(
+			val address : String,
+			val port : Int,
+			val topic : String
+		)
+	\end{lstlisting}
+	
+	\item \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.qakactor/src/main/kotlin/annotations/Tracing.kt}{\textcolor{YellowOrange}{\underline{\texttt{Tracing}}}}:\\
+	\textit{This annotation is applicable to a class (preferably the same of the \texttt{@QakContext} annotation) and enable the \texttt{trace} option of the legacy \texttt{DSL}.}
+	\begin{lstlisting}[numbers=none,language=Kotlin]
+		annotation class Tracing(
+			val active : Boolean = true
+		)
+	\end{lstlisting}
+
+	\item \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.qakactor/src/main/kotlin/annotations/Msglogging.kt}{\textcolor{YellowOrange}{\underline{\texttt{MsgLogging}}}}:\\
+	\textit{This annotation is applicable to a class (preferably the same of the \texttt{@QakContext} annotation) and enable the \texttt{msglogging} option of the legacy \texttt{DSL}.}
+	\begin{lstlisting}[numbers=none,language=Kotlin]
+		annotation class Msglogging(
+			val active : Boolean = true
+		)
+	\end{lstlisting}
+	
+
+\end{itemize}
