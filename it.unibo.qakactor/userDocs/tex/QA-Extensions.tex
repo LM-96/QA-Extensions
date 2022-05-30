@@ -2,7 +2,7 @@
 
 \usepackage{geometry}
 \usepackage{graphicx}
-\usepackage{appendix}
+\usepackage[page,toc]{appendix}
 
 \geometry{a4paper,top=2.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm}
 \usepackage[T1]{fontenc}
@@ -64,6 +64,7 @@
 
 \begin{document}
 \maketitle
+\tableofcontents
 
 %Body -----------------------------------------------------------------------------------
 \input{section/00_abstract.tex}
@@ -76,6 +77,7 @@
 \appendixpage
 \input{section/aA_additional_annotations.tex}
 \input{section/aB_suspend_invocation.tex}
+\input{section/aC_suspendable_actor.tex}
 %----------------------------------------------------------------------------------------
 
 \end{document}

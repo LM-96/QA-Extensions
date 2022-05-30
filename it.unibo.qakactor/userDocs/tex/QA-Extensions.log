@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.1) (preloaded format=pdflatex 2022.1.31)  30 MAY 2022 15:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.1) (preloaded format=pdflatex 2022.1.31)  30 MAY 2022 17:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -488,49 +488,55 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <14.4> on input line 67.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 67.
- (section/00_abstract.tex
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 5
+ (QA-Extensions.toc
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 4
 .
 
 (C:\Users\Luca\AppData\Local\Programs\MiKTeX\tex/latex/base\t1cmtt.fd
 File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
-))
-(section/01_introduction.tex
+)
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 3.
+(Font)              <12> on input line 4.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 3.
+(Font)              <8> on input line 4.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 3.
+(Font)              <6> on input line 4.
+LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <12> not available
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 21.
+)
+\tf@toc=\write4
+\openout4 = `QA-Extensions.toc'.
+
+
+(section/00_abstract.tex [1
+
+{C:/Users/Luca/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]) (section/01_
+introduction.tex
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 21.
- [1
-
-{C:/Users/Luca/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]) (section/02_
-the_transient_model.tex
+)
+(section/02_the_transient_model.tex
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <14.4> not available
 (Font)              Font shape `T1/cmtt/m/n' tried instead on input line 2.
-
+ [2]
 
 pdfTeX warning: pdflatex.exe (file ./img/[UML]it.unibo.kaktor.model.pdf): PDF i
 nclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<img/[UML]it.unibo.kaktor.model.pdf, id=105, 522.99388pt x 500.83109pt>
+<img/[UML]it.unibo.kaktor.model.pdf, id=147, 522.99388pt x 500.83109pt>
 File: img/[UML]it.unibo.kaktor.model.pdf Graphic file (type pdf)
 <use img/[UML]it.unibo.kaktor.model.pdf>
 Package pdftex.def Info: img/[UML]it.unibo.kaktor.model.pdf  used on input line
  19.
 (pdftex.def)             Requested size: 455.24411pt x 435.97171pt.
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 26.
-[2] [3 <./img/[UML]it.unibo.kaktor.model.pdf>]
+[3]
 
 pdfTeX warning: pdflatex.exe (file ./img/[UML]it.unibo.kaktor.model.actorbody_o
 nlyactorbody.pdf): PDF inclusion: found PDF version <1.7>, but at most version 
 <1.5> allowed
-<img/[UML]it.unibo.kaktor.model.actorbody_onlyactorbody.pdf, id=143, 491.91779p
+<img/[UML]it.unibo.kaktor.model.actorbody_onlyactorbody.pdf, id=163, 491.91779p
 t x 509.98529pt>
 File: img/[UML]it.unibo.kaktor.model.actorbody_onlyactorbody.pdf Graphic file (
 type pdf)
@@ -538,12 +544,15 @@ type pdf)
 Package pdftex.def Info: img/[UML]it.unibo.kaktor.model.actorbody_onlyactorbody
 .pdf  used on input line 56.
 (pdftex.def)             Requested size: 455.24411pt x 471.97023pt.
-[4 <./img/[UML]it.unibo.kaktor.model.actorbody_onlyactorbody.pdf>]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[4 <./img/[UML]it.unibo.kaktor.model.pdf>]
 
 pdfTeX warning: pdflatex.exe (file ./img/[UML]it.unibo.kaktor.model.actorbody_o
 nlystatebody.pdf): PDF inclusion: found PDF version <1.7>, but at most version 
 <1.5> allowed
-<img/[UML]it.unibo.kaktor.model.actorbody_onlystatebody.pdf, id=182, 483.72719p
+<img/[UML]it.unibo.kaktor.model.actorbody_onlystatebody.pdf, id=190, 483.72719p
 t x 277.035pt>
 File: img/[UML]it.unibo.kaktor.model.actorbody_onlystatebody.pdf Graphic file (
 type pdf)
@@ -551,18 +560,22 @@ type pdf)
 Package pdftex.def Info: img/[UML]it.unibo.kaktor.model.actorbody_onlystatebody
 .pdf  used on input line 78.
 (pdftex.def)             Requested size: 455.24411pt x 260.72574pt.
-) (section/03_the_builder_mechanism.tex
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[5 <./img/[UML]it.unibo.kaktor.model.actorbody_onlyactorbody.pdf>])
+(section/03_the_builder_mechanism.tex
 Overfull \hbox (6.21895pt too wide) in paragraph at lines 3--3
 []\T1/cmr/bx/n/14.4 Overview of the builder pack-age \T1/cmtt/m/n/14.4 it.unibo
 .kaktor.builders 
  []
 
-[5 <./img/[UML]it.unibo.kaktor.model.actorbody_onlystatebody.pdf>]
+
 
 pdfTeX warning: pdflatex.exe (file ./img/[UML]it.unibo.kaktor.builders_actorb_c
 ontextb_systemb.pdf): PDF inclusion: found PDF version <1.7>, but at most versi
 on <1.5> allowed
-<img/[UML]it.unibo.kaktor.builders_actorb_contextb_systemb.pdf, id=218, 638.385
+<img/[UML]it.unibo.kaktor.builders_actorb_contextb_systemb.pdf, id=230, 638.385
 pt x 794.97pt>
 File: img/[UML]it.unibo.kaktor.builders_actorb_contextb_systemb.pdf Graphic fil
 e (type pdf)
@@ -571,24 +584,27 @@ Package pdftex.def Info: img/[UML]it.unibo.kaktor.builders_actorb_contextb_syst
 emb.pdf  used on input line 11.
 (pdftex.def)             Requested size: 418.82375pt x 521.55222pt.
 
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
 Overfull \hbox (25.55086pt too wide) in paragraph at lines 18--20
 \T1/cmr/m/n/12 is easy pos-si-ble to set the ac-tor body by call-ing the [][]\T
 1/cmtt/m/n/12 addActorBoby(TransientActorBody)
  []
 
-[6 <./img/[UML]it.unibo.kaktor.builders_actorb_contextb_systemb.pdf>]
+[6 <./img/[UML]it.unibo.kaktor.model.actorbody_onlystatebody.pdf>]
 Overfull \hbox (13.51636pt too wide) in paragraph at lines 24--26
 \T1/cmr/m/n/12 tor to the con-text that is build-ing by call-ing [][]\T1/cmtt/m
 /n/12 newActorBasic() []\T1/cmr/m/n/12 or [][]\T1/cmtt/m/n/12 newActorBasicFsm(
 )
  []
 
-
+[7 <./img/[UML]it.unibo.kaktor.builders_actorb_contextb_systemb.pdf>]
 
 pdfTeX warning: pdflatex.exe (file ./img/[UML]it.unibo.kaktor.builders_stateb_t
 ransitionb.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1
 .5> allowed
-<img/[UML]it.unibo.kaktor.builders_stateb_transitionb.pdf, id=253, 558.16531pt 
+<img/[UML]it.unibo.kaktor.builders_stateb_transitionb.pdf, id=292, 558.16531pt 
 x 342.31888pt>
 File: img/[UML]it.unibo.kaktor.builders_stateb_transitionb.pdf Graphic file (ty
 pe pdf)
@@ -597,20 +613,17 @@ Package pdftex.def Info: img/[UML]it.unibo.kaktor.builders_stateb_transitionb.p
 df  used on input line 35.
 (pdftex.def)             Requested size: 455.24411pt x 279.19896pt.
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
 Overfull \hbox (13.35617pt too wide) in paragraph at lines 45--47
 \T1/cmr/m/n/12 The com-po-nent for build-ing tran-si-tions. It can be ob-tained
  us-ing the [][]\T1/cmtt/m/n/12 newTransition()
  []
 
-[7]
+[8 <./img/[UML]it.unibo.kaktor.builders_stateb_transitionb.pdf>]
 
 pdfTeX warning: pdflatex.exe (file ./img/[UML]it.unibo.kaktor.builders_wrapper.
 pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
 
-<img/[UML]it.unibo.kaktor.builders_wrapper.pdf, id=263, 587.3142pt x 210.7875pt
+<img/[UML]it.unibo.kaktor.builders_wrapper.pdf, id=320, 587.3142pt x 210.7875pt
 >
 File: img/[UML]it.unibo.kaktor.builders_wrapper.pdf Graphic file (type pdf)
 <use img/[UML]it.unibo.kaktor.builders_wrapper.pdf>
@@ -621,16 +634,16 @@ Package pdftex.def Info: img/[UML]it.unibo.kaktor.builders_wrapper.pdf  used on
 
 pdfTeX warning: pdflatex.exe (file ./img/[EG]simple_echo_actor_diagram.pdf): PD
 F inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<img/[EG]simple_echo_actor_diagram.pdf, id=266, 492.88138pt x 90.3375pt>
+<img/[EG]simple_echo_actor_diagram.pdf, id=323, 492.88138pt x 90.3375pt>
 File: img/[EG]simple_echo_actor_diagram.pdf Graphic file (type pdf)
 <use img/[EG]simple_echo_actor_diagram.pdf>
 Package pdftex.def Info: img/[EG]simple_echo_actor_diagram.pdf  used on input l
 ine 70.
 (pdftex.def)             Requested size: 455.24411pt x 83.43956pt.
-[8 <./img/[UML]it.unibo.kaktor.builders_stateb_transitionb.pdf> <./img/[UML]it.
-unibo.kaktor.builders_wrapper.pdf>]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
 nput line 79.
+[9 <./img/[UML]it.unibo.kaktor.builders_wrapper.pdf> <./img/[EG]simple_echo_act
+or_diagram.pdf>]
 LaTeX Font Info:    Trying to load font information for T1+cmss on input line 7
 9.
 
@@ -643,13 +656,12 @@ LaTeX Font Info:    Trying to load font information for TS1+cmss on input line
 (C:\Users\Luca\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1cmss.fd
 File: ts1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-[9 <./img/[EG]simple_echo_actor_diagram.pdf>]
 Overfull \hbox (39.18057pt too wide) in paragraph at lines 129--129
 []\T1/cmr/bx/n/14.4 The last step for builders: adding sup-port for make \T1/cm
 tt/m/n/14.4 TransientSystem
  []
 
-
+[10]
 Overfull \hbox (6.64662pt too wide) in paragraph at lines 150--151
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
 
@@ -664,26 +676,33 @@ Overfull \hbox (18.64664pt too wide) in paragraph at lines 147--154
 
 pdfTeX warning: pdflatex.exe (file ./img/[EG]led_sonar_actor_diagram.pdf): PDF 
 inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<img/[EG]led_sonar_actor_diagram.pdf, id=374, 598.15468pt x 659.5842pt>
+<img/[EG]led_sonar_actor_diagram.pdf, id=416, 598.15468pt x 659.5842pt>
 File: img/[EG]led_sonar_actor_diagram.pdf Graphic file (type pdf)
 <use img/[EG]led_sonar_actor_diagram.pdf>
 Package pdftex.def Info: img/[EG]led_sonar_actor_diagram.pdf  used on input lin
 e 14.
 (pdftex.def)             Requested size: 455.24411pt x 502.01384pt.
-[10]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
 Overfull \hbox (14.05325pt too wide) in paragraph at lines 28--31
 \T1/cmr/m/n/12 This ac-tor hold a led that it can com-mand. The ac-tor can re-c
 eive dis-patch \T1/cmtt/m/n/12 ledCmd(CMD)
  []
 
-[11 <./img/[EG]led_sonar_actor_diagram.pdf>]
-<img/[EG]led_sonar_actor_gui.png, id=416, 855.94781pt x 374.14781pt>
+[11]
+<img/[EG]led_sonar_actor_gui.png, id=434, 855.94781pt x 374.14781pt>
 File: img/[EG]led_sonar_actor_gui.png Graphic file (type png)
 <use img/[EG]led_sonar_actor_gui.png>
 Package pdftex.def Info: img/[EG]led_sonar_actor_gui.png  used on input line 44
 .
 (pdftex.def)             Requested size: 455.24411pt x 198.99388pt.
- [12 <./img/[EG]led_sonar_actor_gui.png>]
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[12]
 LaTeX Font Info:    Font shape `T1/cmtt/bx/it' in size <12> not available
 (Font)              Font shape `T1/cmtt/m/it' tried instead on input line 90.
  [13] [14]
@@ -696,7 +715,7 @@ po-nent called [][]\T1/cmtt/m/n/12 QakLauncher.kt[][]
 
 pdfTeX warning: pdflatex.exe (file ./img/[UML]QActorBasic_QActorBasicFsm_Auto.p
 df): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<img/[UML]QActorBasic_QActorBasicFsm_Auto.pdf, id=572, 528.05281pt x 368.33609p
+<img/[UML]QActorBasic_QActorBasicFsm_Auto.pdf, id=602, 528.05281pt x 368.33609p
 t>
 File: img/[UML]QActorBasic_QActorBasicFsm_Auto.pdf Graphic file (type pdf)
 <use img/[UML]QActorBasic_QActorBasicFsm_Auto.pdf>
@@ -706,7 +725,7 @@ input line 260.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[16] [17 <./img/[UML]QActorBasic_QActorBasicFsm_Auto.pdf>]
+[16]
 Overfull \hbox (61.01093pt too wide) in paragraph at lines 309--310
 []\T1/cmr/m/n/12 Indeed, we have cre-ated new an-no-ta-tions that can be used i
 n \T1/cmtt/m/n/12 QActorBasic \T1/cmr/m/n/12 and \T1/cmtt/m/n/12 QActorBasicFsm
@@ -719,71 +738,82 @@ Overfull \hbox (21.37137pt too wide) in paragraph at lines 326--328
 ass that ex-tends \T1/cmtt/m/it/12 QActorBasicFsm\T1/cmr/m/it/12 )
  []
 
-[18]
+[17]
 Overfull \hbox (16.57254pt too wide) in paragraph at lines 382--384
 \T1/cmr/m/it/12 This sim-ple an-no-ta-tion is ap-pli-ca-ble to a method of a cl
 ass that ex-tends \T1/cmtt/m/it/12 QActorBasicFsm
  []
 
-[19] [20] [21]) (section/05_conclusions.tex
+[18] [19] [20]) (section/05_conclusions.tex
 Overfull \hbox (36.84877pt too wide) in paragraph at lines 9--10
 []\T1/cmr/bx/n/12 using only the \T1/cmr/bx/it/12 de-scrip-tive an-no-ta-tion \
 T1/cmr/m/n/12 with the legacy \T1/cmtt/m/n/12 ActorBasic \T1/cmr/m/n/12 and \T1
 /cmtt/m/n/12 ActorBasicFsm
  []
 
-) (section/aA_additional_annotations.tex [22])
+[21]) (section/aA_additional_annotations.tex)
 (section/aB_suspend_invocation.tex
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <17.28> not available
 (Font)              Font shape `T1/cmtt/m/n' tried instead on input line 1.
- [23]) [24] (QA-Extensions.aux)
+ [22]) (section/aC_suspendable_actor.tex
+[23]
 
-Package rerunfilecheck Warning: File `QA-Extensions.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
+pdfTeX warning: pdflatex.exe (file ./img/[UML]Suspendable.pdf): PDF inclusion: 
+found PDF version <1.7>, but at most version <1.5> allowed
+<img/[UML]Suspendable.pdf, id=885, 427.5975pt x 356.29109pt>
+File: img/[UML]Suspendable.pdf Graphic file (type pdf)
+<use img/[UML]Suspendable.pdf>
+Package pdftex.def Info: img/[UML]Suspendable.pdf  used on input line 18.
+(pdftex.def)             Requested size: 455.24411pt x 379.32489pt.
 
-Package rerunfilecheck Info: Checksums for `QA-Extensions.out':
-(rerunfilecheck)             Before: 201E9A90124E483D9FD97D4440B876BA;3980
-(rerunfilecheck)             After:  63E95647E782AFCF0448CC916ACB884B;3985.
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+) [24] [25 <./img/[EG]led_sonar_actor_diagram.pdf>] [26 <./img/[EG]led_sonar_ac
+tor_gui.png> <./img/[UML]QActorBasic_QActorBasicFsm_Auto.pdf>] [27 <./img/[UML]
+Suspendable.pdf>] (QA-Extensions.aux)
+Package rerunfilecheck Info: File `QA-Extensions.out' has not changed.
+(rerunfilecheck)             Checksum: DB75FA57A958DA20810B1DE9AA83AD8B;4219.
  ) 
 Here is how much of TeX's memory you used:
- 15180 strings out of 478593
- 245813 string characters out of 2845076
- 597536 words of memory out of 3000000
- 32671 multiletter control sequences out of 15000+600000
+ 15212 strings out of 478593
+ 246611 string characters out of 2845076
+ 602607 words of memory out of 3000000
+ 32687 multiletter control sequences out of 15000+600000
  489527 words of font info for 66 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 60i,14n,63p,842b,2065s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,14n,63p,842b,1910s stack positions out of 5000i,500n,10000p,200000b,80000s
 {C:/Users/Luca/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/cm-super/cm-supe
 r-t1.enc}{C:/Users/Luca/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/cm-super/
 cm-super-ts1.enc}<C:/Users/Luca/AppData/Local/Programs/MiKTeX/fonts/type1/publi
-c/amsfonts/cm/cmr12.pfb><C:/Users/Luca/AppData/Local/Programs/MiKTeX/fonts/type
-1/public/cm-super/sfbi1200.pfb><C:/Users/Luca/AppData/Local/Programs/MiKTeX/fon
-ts/type1/public/cm-super/sfbx1200.pfb><C:/Users/Luca/AppData/Local/Programs/MiK
-TeX/fonts/type1/public/cm-super/sfbx1440.pfb><C:/Users/Luca/AppData/Local/Progr
-ams/MiKTeX/fonts/type1/public/cm-super/sfbx1728.pfb><C:/Users/Luca/AppData/Loca
-l/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx2074.pfb><C:/Users/Luca/AppDa
-ta/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx2488.pfb><C:/Users/Luc
-a/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfit1200.pfb><C:/Us
-ers/Luca/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfrm0600.pfb
-><C:/Users/Luca/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfrm0
-700.pfb><C:/Users/Luca/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-supe
-r/sfrm0800.pfb><C:/Users/Luca/AppData/Local/Programs/MiKTeX/fonts/type1/public/
-cm-super/sfrm1000.pfb><C:/Users/Luca/AppData/Local/Programs/MiKTeX/fonts/type1/
-public/cm-super/sfrm1200.pfb><C:/Users/Luca/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/cm-super/sfrm1440.pfb><C:/Users/Luca/AppData/Local/Programs/MiKTe
-X/fonts/type1/public/cm-super/sfss1000.pfb><C:/Users/Luca/AppData/Local/Program
-s/MiKTeX/fonts/type1/public/cm-super/sfsx1000.pfb><C:/Users/Luca/AppData/Local/
-Programs/MiKTeX/fonts/type1/public/cm-super/sfti1000.pfb><C:/Users/Luca/AppData
-/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfti1200.pfb><C:/Users/Luca/
-AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sftt1000.pfb><C:/User
-s/Luca/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sftt1200.pfb><
-C:/Users/Luca/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sftt144
-0.pfb><C:/Users/Luca/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/
-sftt1728.pfb>
-Output written on QA-Extensions.pdf (24 pages, 1159657 bytes).
+c/amsfonts/cm/cmmi12.pfb><C:/Users/Luca/AppData/Local/Programs/MiKTeX/fonts/typ
+e1/public/amsfonts/cm/cmmi8.pfb><C:/Users/Luca/AppData/Local/Programs/MiKTeX/fo
+nts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Luca/AppData/Local/Programs/Mi
+KTeX/fonts/type1/public/cm-super/sfbi1200.pfb><C:/Users/Luca/AppData/Local/Prog
+rams/MiKTeX/fonts/type1/public/cm-super/sfbx1200.pfb><C:/Users/Luca/AppData/Loc
+al/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx1440.pfb><C:/Users/Luca/AppD
+ata/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx1728.pfb><C:/Users/Lu
+ca/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx2074.pfb><C:/U
+sers/Luca/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx2488.pf
+b><C:/Users/Luca/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfit
+1200.pfb><C:/Users/Luca/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-sup
+er/sfrm0600.pfb><C:/Users/Luca/AppData/Local/Programs/MiKTeX/fonts/type1/public
+/cm-super/sfrm0700.pfb><C:/Users/Luca/AppData/Local/Programs/MiKTeX/fonts/type1
+/public/cm-super/sfrm0800.pfb><C:/Users/Luca/AppData/Local/Programs/MiKTeX/font
+s/type1/public/cm-super/sfrm1000.pfb><C:/Users/Luca/AppData/Local/Programs/MiKT
+eX/fonts/type1/public/cm-super/sfrm1200.pfb><C:/Users/Luca/AppData/Local/Progra
+ms/MiKTeX/fonts/type1/public/cm-super/sfrm1440.pfb><C:/Users/Luca/AppData/Local
+/Programs/MiKTeX/fonts/type1/public/cm-super/sfss1000.pfb><C:/Users/Luca/AppDat
+a/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfsx1000.pfb><C:/Users/Luca
+/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfti1000.pfb><C:/Use
+rs/Luca/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfti1200.pfb>
+<C:/Users/Luca/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sftt10
+00.pfb><C:/Users/Luca/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super
+/sftt1200.pfb><C:/Users/Luca/AppData/Local/Programs/MiKTeX/fonts/type1/public/c
+m-super/sftt1440.pfb><C:/Users/Luca/AppData/Local/Programs/MiKTeX/fonts/type1/p
+ublic/cm-super/sftt1728.pfb>
+Output written on QA-Extensions.pdf (27 pages, 1258016 bytes).
 PDF statistics:
- 1074 PDF objects out of 1200 (max. 8388607)
- 448 named destinations out of 1000 (max. 500000)
- 203 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1165 PDF objects out of 1200 (max. 8388607)
+ 457 named destinations out of 1000 (max. 500000)
+ 224 words of extra memory for PDF output out of 10000 (max. 10000000)
 

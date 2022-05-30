@@ -15,7 +15,7 @@ For this reason, we have developed \href{https://github.com/LM-96/QA-Extensions/
 This method uses the \href{https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.intrinsics/suspend-coroutine-unintercepted-or-return.html}{\texttt{suspendCoroutineUninterceptedOrReturn}} built-in function that obtain the current coroutine \href{https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines/-continuation/}{\texttt{Continuation}} and call be \texttt{block} passed as parameter inside this continuation.
 Summarizing, the \href{https://kotlinlang.org/docs/extensions.html}{extension function} \texttt{invokeSuspend} we have defined is able to obtain the current continuation and invoke the method using the instance which calls the function by using reflection.
 
-Let us make a simple example:
+Let us make a simple example (see \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.qakactor/src/main/kotlin/demo/InvokeSuspendDemo.kt}{\texttt{InvokeSuspendDemo.kt}}):
 \begin{lstlisting}[caption=Example for \texttt{invokeSuspend}, language=Kotlin]
 	class ExampleClazz(val exampleName : String) {
 		
@@ -33,3 +33,6 @@ Let us make a simple example:
 		}
 	}
 \end{lstlisting}
+The example shows how it is possible to use our \texttt{invokeSuspend} function in order to invoke a method using an instance of \href{https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Method.html}{\texttt{Method}} class (by reflection). 
+
+Notice that \textcolor{BrickRed}{\textbf{at the moment a method marked with \texttt{@State} annotation must be \texttt{suspend}}}. This is a \textit{small} limitation because the developer is forced to make all \textit{state methods} \texttt{suspend}, but it is not a problem and in future developments this mechanism can be improved very rapidly.

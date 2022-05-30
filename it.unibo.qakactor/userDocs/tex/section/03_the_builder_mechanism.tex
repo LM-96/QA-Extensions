@@ -6,7 +6,7 @@ In addition to the transient model, we want to provide a sort of \textit{standar
 
 So, we decided to use the \href{https://en.wikipedia.org/wiki/Builder_pattern}{builder pattern}.
 
-\begin{figure}[h]
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.92\textwidth]{img/[UML]it.unibo.kaktor.builders_actorb_contextb_systemb}
 	\caption{UML diagram for the actor, context and system builders}
@@ -30,7 +30,7 @@ The figure \ref{fig::builders_actorb_contextb_systemb} shows the main builder co
 
 In addition to all things we have just explained, the builders can throw a \texttt{BuildException} if something goes wrong or if the developer has not passed all the needed information to it before invoking \verb*|build()|, for example if the developer invoke it without calling the \verb*|addActorName(String)| before.
 
-\begin{figure}[h]
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{img/[UML]it.unibo.kaktor.builders_stateb_transitionb}
 	\caption{UML diagram for the for the state and transition builders}
@@ -50,7 +50,7 @@ As anticipated, for finite state machine actors we also provide some additional 
 
 As we have already said, the transient entities of the model are only a \textbf{passive description} of the system that will have to run. So this description must be transformed into the \textbf{executable units} that are present in the \texttt{QA} infrastructure: \texttt{ActorBasic} and \texttt{ActorBasicFsm}.
 
-\begin{figure}[h]
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{img/[UML]it.unibo.kaktor.builders_wrapper}
 	\caption{UML diagram for the wrappers}
@@ -65,7 +65,7 @@ For the details about wrappers and their work, please see \href{https://github.c
 \subsection{Example of system creation using builders}
 
 Suppose to have a system with a context that contains an actor called \textit{echoactor} with this behavior:
-\begin{figure}[h]
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{img/[EG]simple_echo_actor_diagram}
 	\caption{Behavior of the \textit{echoactor}}
