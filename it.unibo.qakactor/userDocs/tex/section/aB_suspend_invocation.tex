@@ -1,0 +1,35 @@
+\section{Invocation of \texttt{suspend} methods}
+
+As we said, in the methods marked with \texttt{@State} annotation, the application designer can call some methods like \texttt{emit(...)}, \texttt{send(...)} or \texttt{answer(...)} but according to the \texttt{QAK} specifications these operations are \href{https://kotlinlang.org/docs/coroutines-basics.html#extract-function-refactoring}{\texttt{suspend fun}}.
+
+So, when the \texttt{AnnotationLoader} load all the classes marked with \texttt{@Actor}, it has to consider that some \textit{state methods} can be suspendable, so they must be called from a \href{https://kotlinlang.org/docs/coroutines-guide.html}{\texttt{Coroutine}}.
+For this reason, we have developed \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.qakactor/src/main/kotlin/utils/MethodUtils.kt}{\texttt{MethodUtils.kt}}, a small \texttt{.kt} file with some utility methods, in particular we have the function:
+\begin{center}
+	\begin{tabular}{c}
+		\begin{lstlisting}[frame=none,numbers=none,language=Kotlin]
+			suspend fun Method.invokeSuspend(obj : Any, vararg param : Any?) : Any
+		\end{lstlisting}
+	\end{tabular}
+\end{center}
+
+This method uses the \href{https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.intrinsics/suspend-coroutine-unintercepted-or-return.html}{\texttt{suspendCoroutineUninterceptedOrReturn}} built-in function that obtain the current coroutine \href{https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines/-continuation/}{\texttt{Continuation}} and call be \texttt{block} passed as parameter inside this continuation.
+Summarizing, the \href{https://kotlinlang.org/docs/extensions.html}{extension function} \texttt{invokeSuspend} we have defined is able to obtain the current continuation and invoke the method using the instance which calls the function by using reflection.
+
+Let us make a simple example:
+\begin{lstlisting}[caption=Example for \texttt{invokeSuspend}, language=Kotlin]
+	class ExampleClazz(val exampleName : String) {
+		
+		suspend fun suspendWelcome(name : String) {
+			println("[${exampleName}] Welcome from suspend $name")
+		}
+	}
+	
+	fun main(args : Array<String>) {
+		val suspendWelcomeMethod = ExampleClazz::class.java.methods
+		.find { it.name == "suspendWelcome" }
+		val exampleInst = ExampleClazz("EXAMPLE NAME")
+		runBlocking {
+			suspendWelcomeMethod?.invokeSuspend(exampleInst, "main")
+		}
+	}
+\end{lstlisting}
