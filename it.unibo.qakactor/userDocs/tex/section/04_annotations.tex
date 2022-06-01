@@ -9,24 +9,24 @@ Before talking about annotations, we show a small example that will be used to d
 We will consider a simple case that is used in the course of \emph{Ingegneria Dei Sistemi Software}: a system with a \textcolor{MidnightBlue}{\textbf{led}} and a \textcolor{MidnightBlue}{\textbf{sonar}} connected to a single board computer like Raspberry.
 \textbf{When the sonar detects a distance less than a threshold, the system must turn on the led. If the distance detected goes over this threshold, the led must be powered off}.
 
-\begin{figure}[h]
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{img/[EG]led_sonar_actor_diagram}
 	\caption{Diagram of the \texttt{ledsonar} system}
 	\label{fig::ledsonar_system}
 \end{figure}
 
-The figure \ref{fig::ledsonar_system} shows the diagram of the \texttt{ledsonar} system that will be used fot the examples. The legend of the used notation can be found \href{https://github.com/anatali/issLab2021/blob/main/it.unibo.issLabStart/userDocs/Legenda.pptx}{here}, 
+The figure \ref{fig::ledsonar_system} shows the diagram of the \texttt{ledsonar} system that will be used for the examples. The legend of the used notation can be found \href{https://github.com/anatali/issLab2021/blob/main/it.unibo.issLabStart/userDocs/Legenda.pptx}{here}, 
 but we will not go into the details of the logic.
 
 In summary:
 \begin{itemize}
 	\item \underline{\texttt{SonarActor}}:\\
-	This actor hold a sonar that it can use to read the value from it.
-	The actor can receive request and answer to it but it also do polling emitting \texttt{sonarDistance} events with the current value of the distance read from the sonar.
+	This actor holds a sonar that it can use to read the value from it.
+	The actor can receive request and answer to it, but it also do polling emitting \texttt{sonarDistance} events with the current value of the distance read from the sonar.
 	
 	\item \underline{\texttt{LedActor}}:\\
-	This actor hold a led that it can command.
+	This actor holds a led that it can command.
 	The actor can receive dispatch \texttt{ledCmd(CMD)} with two possible value: \texttt{ON} for power on the led and \texttt{OFF} for turn it off.
 	
 	\item \underline{\texttt{DistanceActor}}:\\
@@ -65,7 +65,7 @@ If you want to use a real sonar or a real led you only have to extends properly 
 
 \subsection{Descriptive annotations [ \href{https://github.com/LM-96/QA-Extensions/tree/main/it.unibo.ledsonardemo0}{\textcolor{Emerald}{\textbf{ledonarsystem0}}} ]}
 
-The focus of our discussion is \textcolor{ForestGreen}{\textbf{to introduce a new mechanism do let the developer able to easily describe the system using annotations}}. The use of the annotation can be very useful:
+The focus of our discussion is \textcolor{ForestGreen}{\textbf{to introduce a new mechanism that let the developer able to easily describe the system using annotations}}. The use of the annotation can be very useful:
 \begin{itemize}
 	\item they do not depend on an IDE and are included in Java so there are no compatibility problems;
 	\item they can completely describe all the aspects of the actor system;
@@ -215,7 +215,7 @@ class LedActor(name : String, scope : CoroutineScope) :
 }
 \end{lstlisting}
 
-With the others class that we have not reported here, the description of the actors of the system is completed. But the system can not be started yet because there are nothing able to make it run reading the annotations. It is needed a component that \textbf{scans all the classes and load the annotated one}.
+With some other classes that we have not reported here, the description of the actors of the system is completed. But the system can not be started yet because there are nothing able to make it run reading the annotations. It is needed a component that \textbf{scans all the classes and load the annotated one}.
 Indeed, we have developed a new component called \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.qakactor/src/main/kotlin/annotations/AnnotationLoader.kt}{\textcolor{ForestGreen}{\texttt{AnnotationLoader}}} with the method 
 \begin{center}
 	\begin{tabular}{c}
@@ -251,7 +251,7 @@ For this reason we have created the two classes shown in the previous section an
 
 Now it is clear that a level of strong separation has been introduced between the \textcolor{ForestGreen}{\textbf{\textit{definition}}} of the actor system and the \textcolor{ForestGreen}{\textbf{\textit{runnable implementation}}} of it.
 
-In addition to this, the new \texttt{@QActor} annotation allow the developer to specify the actor's name directly into the proper annotation field. So, if the developer is forced to directly extends the \texttt{ActorBasic} class, he must always specify a constructor with the two parameter needed by the superclass as done in the previous listings.
+In addition to this, the new \texttt{@QActor} annotation allows the developer to specify the actor's name directly into the proper annotation field. So, if the developer is forced to directly extends the \texttt{ActorBasic} class, he must always specify a constructor with the two parameter needed by the superclass as done in the previous listings.
 
 We want not only to avoid this but also to introduce \textbf{a new stronger level of separation} between the runnable part of the actor (represented by the \texttt{ActorBasic} inherited type) and the description (represented by the override of the proper methods).
 
@@ -262,7 +262,7 @@ We want not only to avoid this but also to introduce \textbf{a new stronger leve
 	\label{fig::q_autoq_classes}
 \end{figure}
 
-Then, first, we have created new classes in order to realize the separation: \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.qakactor/src/main/kotlin/QActorBasic.kt}{\texttt{QActorBasic}} and \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.qakactor/src/main/kotlin/QActorBasicFsm.kt}{\texttt{QActorBasicFsm}}. These two classes are illustrated in the figure \ref{fig::q_autoq_classes} can be used in order to define the behaviour of the actors (\textit{basic} or finite state machine) by extending them and adding other mechanisms such as some proper annotations that will be shown.
+Then, first, we have created new classes in order to realize the separation: \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.qakactor/src/main/kotlin/QActorBasic.kt}{\texttt{QActorBasic}} and \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.qakactor/src/main/kotlin/QActorBasicFsm.kt}{\texttt{QActorBasicFsm}}. These two classes are illustrated in the figure \ref{fig::q_autoq_classes} and can be used in order to define the behaviour of the actors (\textit{basic} or finite state machine) by extending them and adding other mechanisms such as some proper annotations that will be shown.
 
 However, the application designer can decide to insert some operations inside the behaviour that requires to be invoked on the \textit{runnable instance} of the actor he is developing. For this reason, the \texttt{QActorBasic} must anyway maintain the \textit{runnable part} that is the \texttt{ActorBasic} instance (and the correspondent \texttt{ActorBasicFsm} for the \texttt{QActorBasicFsm}) that unfortunately should be available only after the instantiation of the \texttt{Q} classes.
 
@@ -316,7 +316,7 @@ Indeed, we have created new annotations that can be used in \texttt{QActorBasic}
 	\end{lstlisting}
 	
 	\item \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.qakactor/src/main/kotlin/annotations/State.kt}{\textcolor{YellowOrange}{\underline{\texttt{State}}}}:\\
-	\textit{This annotation is applicable to a method of a class that extends \texttt{QActorBasicFsm}) and represents a state with a name and a body that is the method that is marked. The name can also be not present and in this case it is taken from the name of the method the annotation is marking. \textbf{The marked method must has no input parameter while the return type is ignored}.}
+	\textit{This annotation is applicable to a method of a class that extends \texttt{QActorBasicFsm} and represents a state with a name and a body that is the method that is marked. The name can also be not present and in this case it is taken from the name of the method the annotation is marking. \textbf{The marked method must has no input parameter while the return type is ignored}.}
 	\begin{lstlisting}[numbers=none,language=Kotlin]
 		annotation class State(
 			val name : String = ""
@@ -324,7 +324,7 @@ Indeed, we have created new annotations that can be used in \texttt{QActorBasic}
 	\end{lstlisting}
 	
 	\item \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.qakactor/src/main/kotlin/annotations/State.kt}{\textcolor{YellowOrange}{\underline{\texttt{Initial}}}}:\\
-	\textit{This simple annotation is applicable to a method of a class that extends \texttt{QActorBasicFsm}) and marks the state that is the initial for a finite state actor.}
+	\textit{This simple annotation is applicable to a method of a class that extends \texttt{QActorBasicFsm} and marks the state that is the initial for a finite state actor.}
 	\begin{lstlisting}[numbers=none,language=Kotlin]
 		annotation class Initial()
 	\end{lstlisting}
@@ -483,7 +483,7 @@ Notice that nothing has changed in the \texttt{App.kt} file but simply the \text
 
 \subsection{Infix Functions}
 
-\texttt{Kotlin} let the developer write functions with the \href{https://kotlinlang.org/docs/functions.html#infix-notation}{\textbf{infix notation}}.
+\texttt{Kotlin} let the developer to write functions with the \href{https://kotlinlang.org/docs/functions.html#infix-notation}{\textbf{infix notation}}.
 
 Thanks to this possibility we can make the code smarter defining some infix function for sending messages, emitting events and updating \texttt{CoAP} states. For more details about that, see the implementations of \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.qakactor/src/main/kotlin/QActorBasic.kt}{\texttt{QActorBasic}} and \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.qakactor/src/main/kotlin/QActorBasicFsm.kt}{\texttt{QActorBasicFsm}} classes.
 

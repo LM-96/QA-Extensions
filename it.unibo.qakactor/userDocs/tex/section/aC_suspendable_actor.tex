@@ -2,7 +2,7 @@
 
 In addition to our work, we also want to resolve a small problem that is: how to \textit{pause} an actor? And what does \textit{paused} means for an actor?
 
-\textcolor{ForestGreen}{\textbf{When an actor receives a \textit{pause} command in a certain $S_x$ state, from this moment it will not handle any messages until he receives the \textit{resume} command, then it regularly returns to $S_x$ state at the same conditions it was before pausing}}.
+\textcolor{ForestGreen}{\textbf{When an actor receives a \textit{pause} command in a certain $S_x$ state, from this moment it will not handle any message until receives the \textit{resume} command, then it regularly returns to $S_x$ state at the same conditions it was before pausing}}.
 
 So, what appends to the messages that are received while the actor is paused? There are two possibilities:
 \begin{enumerate}
@@ -33,7 +33,7 @@ In order to decide if the messages have to be saved into a buffer and restored w
 If the messages are stored into a buffer, when the actor receives the \texttt{resume} command, then all the saved messages are restored \textbf{in order} and the actor pass into a \textit{meta-state} that is called \texttt{RESUMING} (see the \texttt{\href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.qakactor/src/main/kotlin/SuspendableCore.kt}{\texttt{SuspensionState}}} enumeration). After all messages have been restored, the actor returns at the normal work in the state it was before the suspension.
 
 Notice that as anticipated, we have added a new \textit{layer of state} to the actors that concerns only the \textit{suspension state of the actor} and that is defined by the \texttt{SuspensionState} enumeration.
-This kind of state of a \texttt{SuspendableActorBasic} (or \texttt{SuspendableActorBasicFsm}) is observable thanks to the new \href{https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-state-flow/}{Kotlin StateFlow} that can be obtained from the owned \texttt{SuspendableCore} of these actors.
+This kind of state of a \texttt{SuspendableActorBasic} (or \texttt{SuspendableActorBasicFsm}) is observable thanks to the new \href{https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-state-flow/}{\texttt{Kotlin StateFlow}} that can be obtained from the owned \texttt{SuspendableCore} of these actors.
 
 \textcolor{ForestGreen}{\textbf{If a suspendable actor is resuming, then also the messages that arrives in this state are enqueued into the buffer. In addition to this, please notice that a finite state machine actor does not really change his \textit{fsm} state during the pause, but it is not able to have the normal work because it is locked by the \texttt{SuspendableCore}.}}
 

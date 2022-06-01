@@ -24,7 +24,7 @@ We remember that the main entities defined into the \texttt{QA-System} are:
 Slightly abusing the \texttt{UML} notation, the figure \ref{fig::uml_model} shows the diagram of the transient model package. We have provided these classes:
 \begin{itemize}
 	\item \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.qakactor/src/main/kotlin/model/TransientActorBasic.kt}{\underline{\textbf{\texttt{TransientActorBasic}}}}:\\
-	The class represents the description of an actor (e.g. its name, its scope, its channel size and other options), particularly \textbf{its body} that will be described in a few lines; this is the central class of the model that will be \textit{wrapped} into the \texttt{ActorBasic} class used from the system for the runtime implementation.
+	The class represents the description of an actor (e.g. its name, its scope, its channel size and other options), particularly \textbf{its body} that will be described in a few lines; this is the central class of the model that will be \textit{wrapped} into the \texttt{ActorBasic} class used from the system for the runtime execution.
 	
 	\item \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.qakactor/src/main/kotlin/model/TransientActorBasicFsm.kt}{\underline{\textbf{\texttt{TransientActorBasicFsm}}}}:\\
 	This class represents the description of an actor that is a \textit{finite state machine}. So it extends the \texttt{TransientActorBasic} class but has a \textit{finite state body} instead of the normal body of its super-class.
@@ -58,7 +58,7 @@ We have shown that the \texttt{TransientActorBasic} class maintains an object th
 	\label{fig::uml_model_body}
 \end{figure}
 
-The figure \ref{fig::uml_model_body} summarizes the package that contains the class for the actor body. The main classes of this package are:
+The figure \ref{fig::uml_model_body} summarizes the package that contains the classes for the actor body. The main classes of this package are:
 
 \begin{itemize}
 	\item 	\href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.qakactor/src/main/kotlin/model/actorbody/TransientActorBasicBody.kt}{\underline{\textbf{\texttt{TransientActorBasicBody}}}}:\\
@@ -88,7 +88,7 @@ The figure \ref{fig::uml_model_state_body} shows the classes describing the body
 	\item 	\href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.qakactor/src/main/kotlin/model/actorbody/TransientLambdaStateBody.kt}{\underline{\textbf{\texttt{TransientLambdaStateBody}}}}:\\
 	This is the main class for a body of a finite state machine. It maintains a \href{https://kotlinlang.org/docs/lambdas.html}{\textit{lambda function}} that describes the actions the actor will have to perform when enters the state owning this body.
 \end{itemize}
-The other two subclasses will be used to easily create instance of lambda state body and will be explained in the next sections.
+The other two subclasses will be used to easily create instance of lambda state body and will be clear when we present the \texttt{QActorBasic} and \texttt{AutoQActorBasic} classes.
 
 
 

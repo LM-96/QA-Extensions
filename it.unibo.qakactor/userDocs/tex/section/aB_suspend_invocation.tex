@@ -12,7 +12,7 @@ For this reason, we have developed \href{https://github.com/LM-96/QA-Extensions/
 	\end{tabular}
 \end{center}
 
-This method uses the \href{https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.intrinsics/suspend-coroutine-unintercepted-or-return.html}{\texttt{suspendCoroutineUninterceptedOrReturn}} built-in function that obtain the current coroutine \href{https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines/-continuation/}{\texttt{Continuation}} and call be \texttt{block} passed as parameter inside this continuation.
+This method uses the \href{https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.intrinsics/suspend-coroutine-unintercepted-or-return.html}{\texttt{suspendCoroutineUninterceptedOrReturn}} built-in function that obtains the current coroutine \href{https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines/-continuation/}{\texttt{Continuation}} and call the \texttt{block} passed as parameter inside this continuation.
 Summarizing, the \href{https://kotlinlang.org/docs/extensions.html}{extension function} \texttt{invokeSuspend} we have defined is able to obtain the current continuation and invoke the method using the instance which calls the function by using reflection.
 
 Let us make a simple example (see \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.qakactor/src/main/kotlin/demo/InvokeSuspendDemo.kt}{\texttt{InvokeSuspendDemo.kt}}):

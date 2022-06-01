@@ -25,7 +25,7 @@ The figure \ref{fig::builders_actorb_contextb_systemb} shows the main builder co
 	This component let to create a \texttt{TransientContext}. It is easy possible to add an actor to the context that is building by calling \verb*|newActorBasic()| or \verb*|newActorBasicFsm()| methods that return a builder for the new actor.
 	
 	\item 	\href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.qakactor/src/main/kotlin/builders/SystemBuilder.kt}{\underline{\textbf{\texttt{SystemBuilder}}}}:\\
-	This component let to create a \texttt{TransientSystem}. It is easy possible to add a context to the system that is building by calling \verb*|newContext()| method that returns a \texttt{ContextBuilder}. When the creation of the transient system is completed so it is needed to invoke the \verb*|buil()| method that returns the \texttt{TransientSystem}. Notice that \textbf{a \texttt{SystemBuilder} cannot be reused then once the system is created it not possible to clear the builder and start again the creation}. In addition to this, after the build method invocation, there are no possibilities to add other contexts or to build again.
+	This component let to create a \texttt{TransientSystem}. It is easy possible to add a context to the system that is building by calling \verb*|newContext()| method that returns a \texttt{ContextBuilder}. When the creation of the transient system is completed so it is needed to invoke the \verb*|build()| method that returns the \texttt{TransientSystem}. Notice that \textbf{a \texttt{SystemBuilder} cannot be reused then once the system is created it not possible to clear the builder and start again the creation}. In addition to this, after the build method invocation, there are no possibilities to add other contexts or to build again.
 \end{itemize}
 
 In addition to all things we have just explained, the builders can throw a \texttt{BuildException} if something goes wrong or if the developer has not passed all the needed information to it before invoking \verb*|build()|, for example if the developer invoke it without calling the \verb*|addActorName(String)| before.
@@ -124,14 +124,14 @@ The \texttt{.kt} source code is available \href{https://github.com/LM-96/QA-Exte
 
 At the end of the execution of this snippet, the \verb*|system| variable contains the \texttt{OOP} description of the actor system with the \texttt{echoactor} described in the figure \ref{fig::echo_actor_example}.
 
-The motivations for the line $22$ (\verb*|addQActorBasicFsm(QActorBasicFsm())|) will be clarified in the next section.
+The motivations for the line $22$ (\verb*|addQActorBasicFsm(QActorBasicFsm())|) will be clarified thanks to the introduction of \texttt{QActorBasic} class.
 
 \subsection{The last step for builders: adding support for make \texttt{TransientSystem} runnable}
 
 In the previous example we have created a complete description of the system contained into the \verb*|system| variable. But what do we do with this now? How we can run the \texttt{TransientSystem}?
 
 In order to do it, \textbf{we have to modify the launching methods of the \texttt{QA-System}}.
-Without going into details, we have created a new method into the \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.qakactor/src/main/kotlin/QakContext.kt}{QakContext.kt} that has this signature:
+Without going into details, we have created a new method into the \href{https://github.com/LM-96/QA-Extensions/blob/main/it.unibo.qakactor/src/main/kotlin/QakContext.kt}{\texttt{QakContext.kt}} that has this signature:
 
 \begin{center}
 	\begin{tabular}{c}
@@ -154,7 +154,7 @@ In addition to this, we have created lots of method into the \href{https://githu
 \end{center}
 which follows the methods that were used by the old mechanism.
 
-In order to conclude the example of the \ref{lst::echoexample}, we must add this line to run the system:
+In order to conclude the example of the listing \ref{lst::echoexample}, we must add this line to run the system:
 \begin{lstlisting}[language=Kotlin]
 	QakContext.createSystem(system)
 \end{lstlisting}
