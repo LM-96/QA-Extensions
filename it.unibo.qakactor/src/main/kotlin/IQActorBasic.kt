@@ -32,6 +32,7 @@ interface IQActorBasic : ReadableOnlyParametersOwner
     suspend fun emitWithDelay(  evId: String, evContent: String, dt : Long )
     suspend fun emit( event : IApplMessage, avatar : Boolean)
     suspend fun emit( msgId : String, msg : String)
+    fun terminate()
     fun updateResource(update : String)
 
     fun actorPrintln(line : String) {

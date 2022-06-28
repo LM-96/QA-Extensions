@@ -85,6 +85,10 @@ open class QActorBasic internal constructor(autoSetInstance : Boolean = true,
         return actor.emit(msgId, msg)
     }
 
+    override fun terminate() {
+        actor.terminate()
+    }
+
     override fun actorPrintln(line : String) {
         println("\t## $name \t | $line")
     }
