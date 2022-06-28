@@ -48,7 +48,9 @@ suspend fun launchQak(params : ReadableParameterMap, mutualExclusion: Boolean = 
         println("       %%% qakLauncher | Annotation loading complete ")
     } else
         println("       %%% qakLauncher | Annotation loading is blocked ")
-
+    val blockIO = params.tryCastOrElse(KnownParamNames.BLOCK_IO, false)
+    if(blockIO)
+        sysUtil.ioEnabled = false
 
     println("       %%% qakLauncher | Building system... ")
     QakContext.createSystem(sysBuilder.build())
@@ -82,14 +84,14 @@ suspend fun lauchQakN(mutualExclusion: Boolean = true) = tryLaunch(mutualExclusi
 
 fun qakActor(clazz : Class<*>, params: ReadableParameterMap = immutableParameterMap()) : IQActorBasic {
     runBlocking {
-        launchQak(this, params)
+        launchQak(params)
     }
     return IQActorBasic.IQACTOR_ISTANCES[clazz]!!
 }
 
 fun qakActorFsm(clazz: Class<*>, params: ReadableParameterMap = immutableParameterMap()) : IQActorBasicFsm {
     runBlocking {
-        launchQak(this, params)
+        launchQak(params)
     }
     return qakActor(clazz) as IQActorBasicFsm
 }

@@ -44,10 +44,6 @@ fun main() {
     println("DEMO | Starting...")
     DemoIQActorBasicFsm()
     println("DEMO | Started")
-    /*val channel = Channel<Unit>()
-    runBlocking {
-        channel.receive()
-    }*/
     /*runBlocking {
         launchQak(this)
     }*/

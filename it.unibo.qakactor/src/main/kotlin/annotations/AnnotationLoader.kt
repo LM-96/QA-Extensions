@@ -315,6 +315,16 @@ object AnnotationLoader {
 
         }
 
+        if(clazz.isAnnotationPresent(CustomScope::class.java)) {
+            val scope = CUSTOM_SCOPES[clazz.getAnnotation(CustomScope::class.java).scope]
+            if(scope != null) {
+                sysUtil.traceprintln("\t#loadByActorClass(${clazz.simpleName}, ...): set custom scope [$scope]")
+                actorBuilder.forcedAddActorScope(scope)
+            } else {
+                sysUtil.traceprintln("\t#loadByActorClass(${clazz.simpleName}, ...): custom scope \'${clazz.getAnnotation(CustomScope::class.java).scope}\' not found")
+            }
+        }
+
         var actorBuilderFsm : ActorBasicFsmBuilder? = null
         val type = clazz.getActorClassType()
         sysUtil.traceprintln("\t#loadByActorClass(${clazz.simpleName}, ...): found actor class type [$type]")
