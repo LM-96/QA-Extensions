@@ -26,7 +26,7 @@ class TransientAutoActorBasicFsmClassBody(
     }
 
     fun injectActorBasicFsm(actorBasicFsm: ActorBasicFsm) {
-        val field = QActorBasic::class.java.getDeclaredField("actor")
+        val field = IQActorBasic::class.java.getDeclaredField("actor")
         field.trySetAccessible()
         field.set(qActorBasicFsm, actorBasicFsm)
     }

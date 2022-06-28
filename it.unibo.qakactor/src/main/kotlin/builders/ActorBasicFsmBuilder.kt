@@ -1,7 +1,7 @@
 package it.unibo.kactor.builders
 
 import it.unibo.kactor.AutoQActorBasicFsm
-import it.unibo.kactor.QActorBasicFsm
+import it.unibo.kactor.IQActorBasicFsm
 import it.unibo.kactor.model.*
 import it.unibo.kactor.model.actorbody.TransientActorBasicBody
 import it.unibo.kactor.model.actorbody.TransientActorBasicFsmBody
@@ -14,7 +14,7 @@ class ActorBasicFsmBuilder(contextBuilder: ContextBuilder? = null) :
     private var initialState : String? = null
 
     private var states : MutableMap<String, TransientState>? = null
-    private var qActor : QActorBasicFsm? = null
+    private var qActor : IQActorBasicFsm? = null
     private var stateBuilder : StateBuilder? = null
 
     //private var actorBodyFsm : TransientActorBasicFsmBody? = null
@@ -42,7 +42,7 @@ class ActorBasicFsmBuilder(contextBuilder: ContextBuilder? = null) :
         return stateBuilder!!
     }
 
-    fun addQActorBasicFsm(qActorBasicFsm: QActorBasicFsm) : ActorBasicFsmBuilder {
+    fun addQActorBasicFsm(qActorBasicFsm: IQActorBasicFsm) : ActorBasicFsmBuilder {
         if(stateBuilder != null)
             throw BuildException("Unable to change the \'qActorBasicFsm\' instance because a state builder is already been required")
 

@@ -1,5 +1,7 @@
-package it.unibo.kactor
+package it.unibo.kactor.suspendable
 
+import it.unibo.kactor.ActorBasicFsm
+import it.unibo.kactor.IApplMessage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.GlobalScope
 
@@ -16,7 +18,7 @@ abstract class SuspendableActorBasicFsm(qafsmname:  String,
     ActorBasicFsm(qafsmname, fsmscope, discardMessages, confined, ioBound, channelSize, autoBuild, autoStart) {
 
     val suspendableCore : SuspendableCore
-    private val superActorBody : suspend (IApplMessage) -> Unit = {msg -> super.actorBody(msg)}
+    private val superActorBody : suspend (IApplMessage) -> Unit = { msg -> super.actorBody(msg)}
 
     init {
         suspendableCore = createSuspendableCore(suspended, ignoreMsgWhileSuspended)

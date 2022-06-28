@@ -1,7 +1,8 @@
 package it.unibo.kactor.dsl
 
+import it.unibo.kactor.IQActorBasic
+import it.unibo.kactor.IQActorBasicFsm
 import it.unibo.kactor.QActorBasic
-import it.unibo.kactor.QActorBasicFsm
 import it.unibo.kactor.annotations.LoadException
 import it.unibo.kactor.builders.ActorBasicFsmBuilder
 import it.unibo.kactor.builders.StateBuilder
@@ -44,7 +45,7 @@ class DslQActor(private val actorBuilder: ActorBasicFsmBuilder) : QActorBasic() 
     }
 
     @QActorDsl
-    infix fun StateNameContinuation.withBody(stateBody : suspend QActorBasicFsm.() -> Unit) : StateBodyContinuation {
+    infix fun StateNameContinuation.withBody(stateBody : suspend IQActorBasicFsm.() -> Unit) : StateBodyContinuation {
         if (this@DslQActor.stateToBuid) {
             this@DslQActor.stateBuilder.buildState()
         }

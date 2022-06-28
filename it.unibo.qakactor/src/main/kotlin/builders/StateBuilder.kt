@@ -3,12 +3,15 @@ package it.unibo.kactor.builders
 import it.unibo.kactor.*
 import it.unibo.kactor.model.*
 import it.unibo.kactor.model.actorbody.*
+import it.unibo.kactor.model.actorbody.statebody.TransientLambdaStateBody
+import it.unibo.kactor.model.actorbody.statebody.TransientQActorMethodStateBody
+import it.unibo.kactor.model.actorbody.statebody.TransientQActorStateBody
 import java.lang.reflect.Method
 
 
 class StateBuilder internal constructor(
     private val actorBuilder: ActorBasicFsmBuilder,
-    private val qActorBasic: QActorBasicFsm
+    private val qActorBasic: IQActorBasicFsm
 ){
 
     private var stateName : String? = null
@@ -38,7 +41,7 @@ class StateBuilder internal constructor(
     }
 
     @JvmName("addQActorStateBody")
-    fun addStateBody(body : suspend QActorBasicFsm.() -> Unit) : StateBuilder {
+    fun addStateBody(body : suspend IQActorBasicFsm.() -> Unit) : StateBuilder {
         this.stateBody = TransientQActorStateBody(body, qActorBasic)
         return this
     }
@@ -50,8 +53,8 @@ class StateBuilder internal constructor(
 
     fun addStateBodyByQActorMethod(method : Method) : StateBuilder {
         sysUtil.traceprintln("addStateBodyByQActorMethod(${method.name}) [declaring class: ${method.declaringClass}]")
-        if(!method.declaringClass.isInstance(qActorBasic))
-            throw BuildException("This method is not applicable on an ${qActorBasic.javaClass.simpleName} instance")
+        //if(!method.declaringClass.isInstance(qActorBasic))
+            //throw BuildException("This method is not applicable on an ${qActorBasic.javaClass.simpleName} instance")
         this.stateBody = TransientQActorMethodStateBody(method, qActorBasic)
 
         return this

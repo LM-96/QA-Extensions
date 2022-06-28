@@ -1,16 +1,17 @@
 package it.unibo.kactor.demo
 
+import it.unibo.kactor.IQActorBasicFsm
 import it.unibo.kactor.QActorBasicFsm
 import it.unibo.kactor.builders.SystemBuilder
 import kotlinx.coroutines.runBlocking
 
 fun main(args : Array<String>) {
     /* BODIES OF THE STATES FOR echiactor ***************************** */
-    val s0Body : suspend QActorBasicFsm.()-> Unit =
+    val s0Body : suspend IQActorBasicFsm.()-> Unit =
         { println("started") }
-    val workBody : suspend QActorBasicFsm.() -> Unit =
+    val workBody : suspend IQActorBasicFsm.() -> Unit =
         { println("idle") }
-    val handleRequestBody : suspend QActorBasicFsm.() -> Unit =
+    val handleRequestBody : suspend IQActorBasicFsm.() -> Unit =
         {
             answer("echorequest", "echoreply", currentMsg.msgContent())
         }

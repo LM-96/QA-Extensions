@@ -1,5 +1,9 @@
-package it.unibo.kactor
+package it.unibo.kactor.suspendable
 
+import it.unibo.kactor.ActorBasic
+import it.unibo.kactor.IApplMessage
+import it.unibo.kactor.MsgUtil
+import it.unibo.kactor.sysUtil
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

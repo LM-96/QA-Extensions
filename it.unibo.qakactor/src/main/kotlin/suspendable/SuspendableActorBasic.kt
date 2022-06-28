@@ -1,5 +1,7 @@
-package it.unibo.kactor
+package it.unibo.kactor.suspendable
 
+import it.unibo.kactor.ActorBasic
+import it.unibo.kactor.IApplMessage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.GlobalScope
 

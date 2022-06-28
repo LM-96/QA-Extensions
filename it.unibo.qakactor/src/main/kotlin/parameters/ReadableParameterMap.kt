@@ -450,4 +450,35 @@ abstract class ReadableParameterMap {
     override fun toString(): String {
         return params.toString()
     }
+
+    /**
+     * Performs the given `action` on each parameter of this map
+     */
+    fun forEach(action : (Map.Entry<String, Any>) -> Unit) {
+        params.forEach(action)
+    }
+
+    /**
+     * Returns a new [ReadableParameterMap] that contains all the parameters that are
+     * already present **plus** the new one
+     * @return the new [ReadableParameterMap]
+     */
+    operator fun plus(params : Pair<String, Any>) : ReadableParameterMap {
+        val newMap = mutableMapOf<String, Any>()
+        newMap.putAll(this.params)
+        newMap[params.first] = params.second
+        return ImmutableParameterMap(newMap)
+    }
+
+    /**
+     * Returns a new map that is the result of the merge of this and the given map.
+     * So, the new map contains all the element of this map and of that passed as parameter
+     * to this methos
+     * @return the new map
+     */
+    operator fun plus(parameterMap : ReadableParameterMap) : ReadableParameterMap {
+        val resultMap = params.toMutableMap()
+        resultMap.putAll(parameterMap.asMap())
+        return ImmutableParameterMap(resultMap)
+    }
 }

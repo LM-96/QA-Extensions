@@ -1,9 +1,13 @@
 package it.unibo.kactor.demo
 
-import it.unibo.kactor.QActorBasicFsm
+import it.unibo.kactor.*
 import it.unibo.kactor.annotations.*
-import it.unibo.kactor.launchQak
+import it.unibo.kactor.annotations.QakContext
+import it.unibo.kactor.annotations.State
+import it.unibo.kactor.dsl.start
 import it.unibo.kactor.model.TransientStartMode
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 
 @QakContext("sContextTest",
@@ -13,14 +17,20 @@ import kotlinx.coroutines.runBlocking
 class ContextConfiguration
 
 @QActor("sContextTest")
-class DemoIQActorBasicFsm : QActorBasicFsm() {
+@StartMode(TransientStartMode.MANUAL)
+class DemoIQActorBasicFsm : IQActorBasicFsm by qakActorFsm(DemoIQActorBasicFsm::class.java) {
+
+    init {
+        setInstanceAndStart(this)
+    }
 
     @Initial
     @State
     @EpsilonMove("begin2idle", "idle")
     suspend fun begin() {
         actorPrintln("started")
-        actorPrintln("current params: $parameters")
+        actorPrintln("current params: $readOnlyParameters")
+        delay(2000)
     }
 
     @State
@@ -31,7 +41,14 @@ class DemoIQActorBasicFsm : QActorBasicFsm() {
 }
 
 fun main() {
+    println("DEMO | Starting...")
+    DemoIQActorBasicFsm()
+    println("DEMO | Started")
+    /*val channel = Channel<Unit>()
     runBlocking {
+        channel.receive()
+    }*/
+    /*runBlocking {
         launchQak(this)
-    }
+    }*/
 }

@@ -114,7 +114,7 @@ object AnnotationLoader {
 
     @Throws(LoadException::class, BuildException::class)
     fun loadSystemByAnnotations(params : ReadableParameterMap = immutableParameterMap()) : SystemBuilder {
-        val names = params.getAs<List<String>>("ann_class_names")
+        val names = params.getAs<List<String>>(KnownParamNames.ANNOTATED_CLASS_NAMES)
         classInfos = if(names != null) {
             loadByNames(names)
         } else {
@@ -338,14 +338,29 @@ object AnnotationLoader {
             }
 
             ActorClassType.QACTOR_BASIC_ONLY -> {
-                loadByQActorBasicClass(clazz as Class<out QActorBasic>, actorBuilder)
+                loadByQActorBasicClass(clazz as Class<out IQActorBasic>, actorBuilder, false)
+                sysUtil.traceprintln("\t#loadByActorClass(${clazz.simpleName}, ...): calling \'loadByQActorBasicClass\'")
+            }
+
+            ActorClassType.IQACTOR_BASIC_ONLY -> {
+                actorBuilder.addParameter(KnownParamNames.DENY_QACTOR_BY_CONSTRUCTION, true)
+                loadByQActorBasicClass(clazz as Class<out IQActorBasic>, actorBuilder, true)
                 sysUtil.traceprintln("\t#loadByActorClass(${clazz.simpleName}, ...): calling \'loadByQActorBasicClass\'")
             }
 
             ActorClassType.QACTOR_BASIC_FSM -> {
                 actorBuilderFsm = actorBuilder.upgrateToFsmBuilder()
                 sysUtil.traceprintln("\t#loadByActorClass(${clazz.simpleName}, ...): upgraded to FSM builder [$actorBuilderFsm]")
-                loadByQActorBasicFsmClass(clazz, actorName, actorBuilderFsm)
+                loadByQActorBasicFsmClass(clazz, actorName, actorBuilderFsm, false)
+                sysUtil.traceprintln("\t#loadByActorClass(${clazz.simpleName}, ...): calling \'loadByQActorBasicFsmClass\'")
+
+            }
+
+            ActorClassType.IQACTOR_BASIC_FSM -> {
+                actorBuilder.addParameter(KnownParamNames.DENY_QACTOR_BY_CONSTRUCTION, true)
+                actorBuilderFsm = actorBuilder.upgrateToFsmBuilder()
+                sysUtil.traceprintln("\t#loadByActorClass(${clazz.simpleName}, ...): upgraded to FSM builder [$actorBuilderFsm]")
+                loadByQActorBasicFsmClass(clazz, actorName, actorBuilderFsm, true)
                 sysUtil.traceprintln("\t#loadByActorClass(${clazz.simpleName}, ...): calling \'loadByQActorBasicFsmClass\'")
 
             }
@@ -383,7 +398,9 @@ object AnnotationLoader {
         }
     }
 
-    private fun loadByQActorBasicClass(clazz : Class<out QActorBasic>, actorBuilder: ActorBasicBuilder) {
+    private fun loadByQActorBasicClass(clazz : Class<out IQActorBasic>, actorBuilder: ActorBasicBuilder,
+                                       isIQActorBasic: Boolean
+    ) {
         sysUtil.traceprintln("\t#loadByQActorBasicClass($clazz, $actorBuilder): invoked")
         var method : Method? = null
         for(m in clazz.declaredMethods){
@@ -401,18 +418,34 @@ object AnnotationLoader {
             sysUtil.traceprintln("\t#loadByQActorBasicClass(${clazz.simpleName}, ...): no body method found")
             throw LoadException("Class ${clazz.name} does not have a method annotated with ${ActorBody::class.java.simpleName}")
         }
-        actorBuilder.addQActorMethodBody(method, clazz.getConstructor().newInstance())
+        var qActorBasic : IQActorBasic = if(isIQActorBasic) {
+            QActorBasic(false)
+        } else {
+            clazz.getConstructor().newInstance() as IQActorBasic
+        }
+
+        actorBuilder.addQActorMethodBody(method, qActorBasic)
+        IQActorBasic.IQACTOR_ISTANCES[clazz] = qActorBasic
+        sysUtil.traceprintln("\t#loadByQActorBasicClass(${clazz.simpleName}, ...): QActorBasic instance stored into system map")
+
         sysUtil.traceprintln("\t#loadByQActorBasicClass(${clazz.simpleName}, ...): added QActorMethodBody to builder")
     }
 
     private fun loadByQActorBasicFsmClass(
         clazz : Class<*>, actorName : String, actorBuilder: ActorBasicFsmBuilder,
-        qActorBasicFsmInstance : QActorBasicFsm? = null
-    ) {
+        isIQActorBasicFsm: Boolean ) {
         sysUtil.traceprintln("\t#loadByQActorBasicFsmClass($clazz, $actorBuilder): invoked")
-        val qakactor = qActorBasicFsmInstance ?: clazz.getConstructor().newInstance() as QActorBasicFsm
+
+        var qakactor : IQActorBasicFsm = if(isIQActorBasicFsm) {
+            QActorBasicFsm(false)
+        } else {
+            clazz.getConstructor().newInstance() as IQActorBasicFsm
+        }
+
         sysUtil.traceprintln("\t#loadByQActorBasicFsmClass(${clazz.simpleName}, ...): created \'QActorBasicFsm\' instance [$qakactor]")
-        actorBuilder.addQActorBasicFsm(qakactor)
+        IQActorBasic.IQACTOR_ISTANCES[clazz] = qakactor!!
+        sysUtil.traceprintln("\t#loadByQActorBasicFsmClass(${clazz.simpleName}, ...): QActorBasicFsm stored into system map")
+        actorBuilder.addQActorBasicFsm(qakactor!!)
         sysUtil.traceprintln("\t#loadByQActorBasicFsmClass(${clazz.simpleName}, ...): added 'QActorBasicFsm' instance to builder")
 
         val stateMethods = clazz.declaredMethods
@@ -444,13 +477,13 @@ object AnnotationLoader {
 
         for(s in stateMethods) {
             sysUtil.traceprintln("\t#loadByQActorBasicFsmClass(${clazz.simpleName}, ...): building state \'${s.key}\' by method \'${s.value.name}\'")
-            buildState(qakactor, actorBuilder, s.key, s.value, guardMethods)
+            buildState(qakactor!!, actorBuilder, s.key, s.value, guardMethods)
             sysUtil.traceprintln("\t#loadByQActorBasicFsmClass(${clazz.simpleName}, ...): state \'${s.key}\' built")
         }
     }
 
     @Throws(LoadException::class)
-    private fun buildState(qactor : QActorBasic, actorBuilder : ActorBasicFsmBuilder, stateName : String,
+    private fun buildState(qactor : IQActorBasic, actorBuilder : ActorBasicFsmBuilder, stateName : String,
                            method : Method, guards : Map<String, Method>) {
         sysUtil.traceprintln("\t#buildState($qactor, $actorBuilder, $stateName, $method, $guards): invoked")
         if(method.hasParameters())
@@ -551,7 +584,7 @@ object AnnotationLoader {
     }
 
     private fun parseEpsilonMove(tAnn : EpsilonMove, stateBuilder: StateBuilder, guards : Map<String, Method>,
-                                 qactor : QActorBasic
+                                 qactor : IQActorBasic
     ) {
         sysUtil.traceprintln("\t#parseEpsilonMove($tAnn, $stateBuilder, $guards, $qactor): invoked")
 
@@ -584,7 +617,7 @@ object AnnotationLoader {
     }
 
     private fun parseWhenDispatch(tAnn : WhenDispatch, stateBuilder: StateBuilder, guards : Map<String, Method>,
-                                  qactor : QActorBasic
+                                  qactor : IQActorBasic
     ) {
 
         sysUtil.traceprintln("\t#parseWhenDispatch($tAnn, $stateBuilder, $guards, $qactor): invoked")
@@ -622,7 +655,7 @@ object AnnotationLoader {
     }
 
     private fun parseWhenRequest(tAnn : WhenRequest, stateBuilder: StateBuilder, guards : Map<String, Method>,
-                                 qactor : QActorBasic
+                                 qactor : IQActorBasic
     ) {
         sysUtil.traceprintln("\t#parseWhenRequest($tAnn, $stateBuilder, $guards, $qactor): invoked")
 
@@ -659,7 +692,7 @@ object AnnotationLoader {
     }
 
     private fun parseWhenReply(tAnn : WhenReply, stateBuilder: StateBuilder, guards : Map<String, Method>,
-                               qactor : QActorBasic
+                               qactor : IQActorBasic
     ) {
         sysUtil.traceprintln("\t#parseWhenReply($tAnn, $stateBuilder, $guards, $qactor): invoked")
         val transitionBuilder = stateBuilder.newTransition()
@@ -697,7 +730,7 @@ object AnnotationLoader {
     }
 
     private fun parseWhenEvent(tAnn : WhenEvent, stateBuilder: StateBuilder, guards : Map<String, Method>,
-                               qactor : QActorBasic
+                               qactor : IQActorBasic
     ) {
         sysUtil.traceprintln("\t#parseWhenEvent($tAnn, $stateBuilder, $guards, $qactor): invoked")
         val transitionBuilder = stateBuilder.newTransition()
@@ -731,7 +764,7 @@ object AnnotationLoader {
     }
 
     private fun parseWhenTime(tAnn : WhenTime, stateBuilder: StateBuilder, guards : Map<String, Method>,
-                                 qactor : QActorBasic
+                                 qactor : IQActorBasic
     ) {
         sysUtil.traceprintln("\t#parseWhenTime($tAnn, $stateBuilder, $guards, $qactor): invoked")
         val transitionBuilder = stateBuilder.newTransition()

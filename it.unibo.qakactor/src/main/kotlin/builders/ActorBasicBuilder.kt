@@ -99,16 +99,16 @@ open class ActorBasicBuilder(protected val contextBuilder: ContextBuilder? = nul
         return this
     }
 
-    fun addQActorBody(qActorBasic : QActorBasic, body : QActorBasic.(IApplMessage) -> Unit) :
+    fun addQActorBody(qActorBasic : IQActorBasic, body : IQActorBasic.(IApplMessage) -> Unit) :
             ActorBasicBuilder {
         return addActorBody(TransientQActorBasicBody(body, qActorBasic))
     }
 
-    fun addQActorBody(body : QActorBasic.(IApplMessage) -> Unit) : ActorBasicBuilder {
+    fun addQActorBody(body : IQActorBasic.(IApplMessage) -> Unit) : ActorBasicBuilder {
         return addActorBody(TransientQActorBasicBody(body, QActorBasic()))
     }
 
-    fun addQActorMethodBody(method : Method, instance : QActorBasic) : ActorBasicBuilder {
+    fun addQActorMethodBody(method : Method, instance : IQActorBasic) : ActorBasicBuilder {
         return addActorBody(TransientQActorMethodBody(method, instance))
     }
 

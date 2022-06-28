@@ -3,11 +3,14 @@ package it.unibo.kactor.model.actorbody
 import it.unibo.kactor.*
 import it.unibo.kactor.builders.TransitionType
 import it.unibo.kactor.model.TransientState
+import it.unibo.kactor.model.actorbody.statebody.TransientLambdaStateBody
+import it.unibo.kactor.utils.getDelegateFieldsWithType
+import java.lang.reflect.Field
 
 open class TransientQActorBasicFsmBody internal constructor (
     initialState : String,
     states : Map<String, TransientState>,
-    val qActorBasicFsm: QActorBasicFsm = QActorBasicFsm()
+    val qActorBasicFsm: IQActorBasicFsm = QActorBasicFsm()
 ) : TransientActorBasicFsmBody(generateActorBasicFsmBody(states), initialState) {
 
     companion object {
@@ -95,8 +98,20 @@ open class TransientQActorBasicFsmBody internal constructor (
     }
 
     fun injectActorBasicFsm(actorBasicFsm: ActorBasicFsm) {
-        val field = QActorBasic::class.java.getDeclaredField("actor")
-        field.isAccessible = true
+        var field : Field?
+        field = if(QActorBasicFsm::class.java.isInstance(qActorBasicFsm)) {
+            QActorBasic::class.java.getDeclaredField("actor")
+        } else{
+            try {
+                val delqABFsm = qActorBasicFsm.javaClass.getDelegateFieldsWithType(QActorBasicFsm::class.java).first()
+                QActorBasicFsm::class.java.getDeclaredField("actor")
+            } catch (e : Exception) {
+                throw IllegalStateException("injection is not supported for class ${qActorBasicFsm::class.java}")
+            }
+
+        }
+
+        field!!.isAccessible = true
         field.set(qActorBasicFsm, actorBasicFsm)
     }
 

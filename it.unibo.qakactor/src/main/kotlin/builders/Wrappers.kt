@@ -17,7 +17,7 @@ internal class ActorBasicWrapper(tActorBasic : TransientActorBasic) : ActorBasic
 
     init {
         tBody = when (tActorBasic.actorBody) {
-            is TransientQActorBasicBody<out QActorBasic> -> {
+            is TransientQActorBasicBody<out IQActorBasic> -> {
                 tActorBasic.actorBody.injectActorBasic(this)
                 tActorBasic.actorBody.action
             }

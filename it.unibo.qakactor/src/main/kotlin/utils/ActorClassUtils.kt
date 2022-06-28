@@ -23,16 +23,24 @@ fun Class<*>.isOnlyActorBasic() : Boolean {
 
 
 /* QACTORBASIC - QACTORBASICFSM ************************************************* */
-fun QActorBasic.isQActorBasicFsm(clazz : Class<*>) : Boolean {
-    return hasSuperclass(clazz, QActorBasicFsm::class.java)
+fun IQActorBasic.isQActorBasicFsm(clazz : Class<*>) : Boolean {
+    return hasSuperclass(clazz, IQActorBasicFsm::class.java)
 }
 
 fun Class<*>.isQActorBasic() : Boolean {
     return hasSuperclass(this, QActorBasic::class.java)
 }
 
+fun Class<*>.isIQActorBasic() : Boolean {
+    return implements(this, IQActorBasic::class.java)
+}
+
 fun Class<*>.isQActorBasicFsm() : Boolean {
     return hasSuperclass(this, QActorBasicFsm::class.java)
+}
+
+fun Class<*>.isIQActorBasicFsm() : Boolean {
+    return implements(this, IQActorBasicFsm::class.java)
 }
 
 fun Class<*>.isOnlyQActorBasic() : Boolean {
@@ -40,8 +48,13 @@ fun Class<*>.isOnlyQActorBasic() : Boolean {
             !hasSuperclass(this, QActorBasicFsm::class.java)
 }
 
+fun Class<*>.isOnlyIQActorBasic() : Boolean {
+    return implements(this, IQActorBasic::class.java) &&
+            !implements(this, IQActorBasicFsm::class.java)
+}
+
 /* AUTOQACTORBASIC - AUTOQACTORBASICFSM ************************************************* */
-fun QActorBasic.isAutoQActorBasicFsm(clazz : Class<*>) : Boolean {
+fun IQActorBasic.isAutoQActorBasicFsm(clazz : Class<*>) : Boolean {
     return hasSuperclass(clazz, AutoQActorBasicFsm::class.java)
 }
 
@@ -77,6 +90,10 @@ fun getActorClassType(clazz: Class<*>) : ActorClassType? {
         return ActorClassType.AUTO_QACTOR_BASIC_ONLY
     else if(clazz.isQActorBasic())
         return ActorClassType.QACTOR_BASIC_ONLY
+    else if(clazz.isIQActorBasicFsm())
+        return ActorClassType.IQACTOR_BASIC_FSM
+    else if(clazz.isIQActorBasic())
+        return ActorClassType.IQACTOR_BASIC_ONLY
 
     return null
 }
