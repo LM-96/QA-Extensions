@@ -1,13 +1,10 @@
 package it.unibo.kactor.model.actorbody
 
-import it.unibo.kactor.ActorBasicFsm
-import it.unibo.kactor.QActorBasic
-import it.unibo.kactor.QActorBasicFsm
-import it.unibo.kactor.TimerActor
+import it.unibo.kactor.*
 import it.unibo.kactor.builders.TransitionType
 import it.unibo.kactor.model.TransientState
 
-class TransientQActorBasicFsmBody (
+open class TransientQActorBasicFsmBody internal constructor (
     initialState : String,
     states : Map<String, TransientState>,
     val qActorBasicFsm: QActorBasicFsm = QActorBasicFsm()
@@ -99,7 +96,7 @@ class TransientQActorBasicFsmBody (
 
     fun injectActorBasicFsm(actorBasicFsm: ActorBasicFsm) {
         val field = QActorBasic::class.java.getDeclaredField("actor")
-        field.trySetAccessible()
+        field.isAccessible = true
         field.set(qActorBasicFsm, actorBasicFsm)
     }
 

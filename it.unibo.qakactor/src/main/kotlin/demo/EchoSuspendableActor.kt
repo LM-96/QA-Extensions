@@ -1,4 +1,4 @@
-package it.unibo.kactor.demo
+/*package it.unibo.kactor.demo
 
 import it.unibo.kactor.*
 import it.unibo.kactor.annotations.HostName
@@ -148,4 +148,4 @@ private fun menu() : Int {
     }
 
     return choice
-}
+}*/

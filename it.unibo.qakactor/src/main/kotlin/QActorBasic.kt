@@ -3,7 +3,8 @@ package it.unibo.kactor
 import it.unibo.`is`.interfaces.protocols.IConnInteraction
 import it.unibo.kactor.dsl.QActorDsl
 
-open class QActorBasic internal constructor(actorBasic : ActorBasic? = null) {
+open class QActorBasic internal constructor(actorBasic : ActorBasic? = null)
+{
 
     constructor() : this(null)
 
@@ -17,6 +18,10 @@ open class QActorBasic internal constructor(actorBasic : ActorBasic? = null) {
     val name : String
     get() {return actor.name}
 
+    fun getActorName(): String {
+        return actor.name
+    }
+
     suspend fun autoMsg(msg : IApplMessage) {
         return actor.autoMsg(msg)
     }
@@ -25,7 +30,7 @@ open class QActorBasic internal constructor(actorBasic : ActorBasic? = null) {
         return actor.autoMsg(msgId, msg)
     }
 
-    suspend fun sendMessageToActor( msg : IApplMessage , destName: String, conn : IConnInteraction? = null ) {
+    suspend fun sendMessageToActor( msg : IApplMessage , destName: String, conn : IConnInteraction? ) {
         return actor.sendMessageToActor(msg, destName, conn)
     }
 
@@ -53,11 +58,11 @@ open class QActorBasic internal constructor(actorBasic : ActorBasic? = null) {
         return actor.emit(ctx, event)
     }
 
-    suspend fun emitWithDelay(  evId: String, evContent: String, dt : Long = 0L ) {
+    suspend fun emitWithDelay(  evId: String, evContent: String, dt : Long ) {
         return actor.emitWithDelay(evId, evContent, dt)
     }
 
-    suspend fun emit( event : IApplMessage, avatar : Boolean = false ) {
+    suspend fun emit( event : IApplMessage, avatar : Boolean) {
         return actor.emit(event, avatar)
     }
 
@@ -65,11 +70,11 @@ open class QActorBasic internal constructor(actorBasic : ActorBasic? = null) {
         return actor.emit(msgId, msg)
     }
 
-    protected fun actorPrintln(line : String) {
+    fun actorPrintln(line : String) {
         println("\t## $name \t | $line")
     }
 
-    protected fun actorStringln(line: String) : String {
+    fun actorStringln(line: String) : String {
         return "\t## $name \t | $line"
     }
 

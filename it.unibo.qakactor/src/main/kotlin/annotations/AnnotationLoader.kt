@@ -12,11 +12,92 @@ import java.util.*
 
 object AnnotationLoader {
 
-    private val classInfos =
+    /*private fun hasToBeLoaded(classInfo: ClassInfo) : Boolean {
+        return classInfo.hasAnnotation(Tracing::class.java) ||
+                classInfo.hasAnnotation(Msglogging::class.java) ||
+                classInfo.hasAnnotation(MqttBroker::class.java) ||
+                classInfo.hasAnnotation(HostName::class.java) ||
+                classInfo.hasAnnotation(QakContext::class.java) ||
+                classInfo.hasAnnotation(QActor::class.java)
+    }*/
+
+    private fun loadByClassgraph() : Map<Class<out Annotation>, List<Class<*>>> {
+        val res = mutableMapOf<Class<out Annotation>, MutableList<Class<*>>>()
         ClassGraph().enableClassInfo().enableAnnotationInfo().scan()
+            .allClasses.forEach {
+                if(it.hasAnnotation(Tracing::class.java))
+                    res.addToList(Tracing::class.java, it.loadClass())
+
+                if(it.hasAnnotation(Msglogging::class.java))
+                    res.addToList(Msglogging::class.java, it.loadClass())
+
+                if(it.hasAnnotation(MqttBroker::class.java))
+                    res.addToList(MqttBroker::class.java, it.loadClass())
+
+                if(it.hasAnnotation(HostName::class.java))
+                    res.addToList(HostName::class.java, it.loadClass())
+
+                if(it.hasAnnotation(QakContext::class.java))
+                    res.addToList(QakContext::class.java, it.loadClass())
+
+                if(it.hasAnnotation(QakContextList::class.java))
+                    res.addToList(QakContextList::class.java, it.loadClass())
+
+                if(it.hasAnnotation(QActor::class.java))
+                    res.addToList(QActor::class.java, it.loadClass())
+            }
+
+        return res
+    }
+
+    private fun loadByNames(names : Collection<String>) : Map<Class<out Annotation>, List<Class<*>>> {
+        val res = mutableMapOf<Class<out Annotation>, MutableList<Class<*>>>()
+        names.forEach { name ->
+            val clazz = Class.forName(name)
+            if(clazz.isAnnotationPresent(Tracing::class.java))
+                res.addToList(Tracing::class.java, clazz)
+
+            if(clazz.isAnnotationPresent(Msglogging::class.java))
+                res.addToList(Msglogging::class.java, clazz)
+
+            if(clazz.isAnnotationPresent(MqttBroker::class.java))
+                res.addToList(MqttBroker::class.java, clazz)
+
+            if(clazz.isAnnotationPresent(HostName::class.java))
+                res.addToList(HostName::class.java, clazz)
+
+            if(clazz.isAnnotationPresent(QakContext::class.java))
+                res.addToList(QakContext::class.java, clazz)
+
+            if(clazz.isAnnotationPresent(QakContextList::class.java))
+                res.addToList(QakContextList::class.java, clazz)
+
+            if(clazz.isAnnotationPresent(QActor::class.java))
+                res.addToList(QActor::class.java, clazz)
+        }
+        return res
+    }
+
+    private fun <K, V> MutableMap<K, MutableList<V>>.addToList(key : K, value : V) {
+        if(!this.containsKey(key))
+            this[key] = mutableListOf()
+        this[key]!!.add(value)
+    }
+
+    private lateinit var classInfos : Map<Class<out Annotation>, List<Class<*>>>
 
     private val annotatedAsActor = mutableLoadableValue<Set<Class<*>>>()
     private val loadedActor = mutableMapOf<Class<*>, TransientActorBasic>()
+
+    val loadedActorClassNames : Set<String>
+        get() {
+        return loadedActor.keys.map { it.name }.toSet()
+    }
+
+    val loadedActorNames : Set<String>
+    get() {
+        return loadedActor.map { it.value.actorName }.toSet()
+    }
 
     private val traceOption = mutableLoadableValue<Boolean>()
     private val msgLoggingOption = mutableLoadableValue<Boolean>()
@@ -24,8 +105,19 @@ object AnnotationLoader {
     private val contexts = mutableLoadableValue<List<QakContext>>()
     private val hostname = mutableLoadableValue<String>()
 
+    fun getLoadedActor() : Map<Class<*>, TransientActorBasic> {
+        return loadedActor
+    }
+
     @Throws(LoadException::class, BuildException::class)
     fun loadSystemByAnnotations(params : ReadableParameterMap = immutableParameterMap()) : SystemBuilder {
+        val names = params.getAs<List<String>>("ann_class_names")
+        classInfos = if(names != null) {
+            loadByNames(names)
+        } else {
+            loadByClassgraph()
+        }
+
         println("          %%% annotationLoader | Loading system scanning annotations ")
         scanForTraceOption().ifLoaded {
             println("          %%% annotationLoader | Loaded trace option by annotation: $it")
@@ -61,6 +153,7 @@ object AnnotationLoader {
         }
 
         val contexts = scanForContexts().aGet()
+
         val actors = scanForActorClasses().aGet().groupBy { it.getAnnotation(QActor::class.java).contextName }
         val ctxScopes = params.tryCastOrElse(KnownParamNames.CTX_SCOPES, mutableMapOf<String, CoroutineScope>())
         val systemScope = params.tryCastOrElse(KnownParamNames.SYSTEM_SCOPE, GlobalScope)
@@ -90,9 +183,7 @@ object AnnotationLoader {
     fun scanForActorClasses() : LoadResult<Set<Class<*>>> {
         return annotatedAsActor.ifMutableUntouched {
             load {
-                classInfos.getClassesWithAnnotation(QActor::class.java)
-                    .map { it.loadClass() }
-                    .toSet()
+                classInfos[QActor::class.java]?.toSet() ?: mutableSetOf()
             }
         }.asLoadResult()
     }
@@ -100,14 +191,12 @@ object AnnotationLoader {
     @Throws(LoadException::class)
     fun scanForTraceOption() : LoadResult<Boolean> {
         return traceOption.ifMutableUntouched {
-            val annotated = classInfos.getClassesWithAnnotation(Tracing::class.java)
-            if(!annotated.isEmpty()) {
+            val annotated = classInfos[Tracing::class.java]
+            if(annotated?.isEmpty() == false) {
                 if (annotated.size != 1)
                     throw LoadException("Multiple @${Tracing::class.java.simpleName} annotation not allowed")
                 load {
-                    annotated[0]
-                        .getAnnotationInfo(Tracing::class.java)
-                        .parameterValues["active"].value as Boolean
+                    (annotated[0].getAnnotation(Tracing::class.java)).active
                 }
             } else
                 notFound()
@@ -118,14 +207,12 @@ object AnnotationLoader {
     @Throws(LoadException::class)
     fun scanForMsgLoggingOption() : LoadResult<Boolean> {
         return msgLoggingOption.ifMutableUntouched {
-            val annotated = classInfos.getClassesWithAnnotation(Msglogging::class.java)
-            if(!annotated.isEmpty()) {
+            val annotated = classInfos[Msglogging::class.java]
+            if(annotated?.isEmpty() == false) {
                 if (annotated.size != 1)
                     throw LoadException("Multiple @${Msglogging::class.java.simpleName} annotation not allowed")
                 load {
-                    annotated[0]
-                        .getAnnotationInfo(Msglogging::class.java)
-                        .parameterValues["active"].value as Boolean
+                    (annotated[0].getAnnotation(Msglogging::class.java)).active
                 }
             } else
                 notFound()
@@ -135,14 +222,12 @@ object AnnotationLoader {
 
     fun scanForMqqtBroker() : LoadResult<Triple<String, Int, String>> {
         return mqttBroker.ifMutableUntouched {
-            val annotated = classInfos.getClassesWithAnnotation(MqttBroker::class.java)
-            if(!annotated.isEmpty()) {
+            val annotated = classInfos[MqttBroker::class.java]
+            if(annotated?.isEmpty() == false) {
                 if(annotated.size != 1)
                     throw IllegalStateException("Multiple @${MqttBroker::class.java.simpleName} annotation not allowed")
-                val annotationInfo = annotated[0].getAnnotationInfo(MqttBroker::class.java)
-                load {  Triple(annotationInfo.parameterValues["address"].value as String,
-                   annotationInfo.parameterValues["port"].value as Int,
-                   annotationInfo.parameterValues["topic"].value as String)
+                val ann = annotated[0].getAnnotation(MqttBroker::class.java)
+                load {  Triple(ann.address, ann.port, ann.topic)
                }
             } else
                 notFound()
@@ -153,15 +238,13 @@ object AnnotationLoader {
     fun scanForContexts() : LoadResult<List<QakContext>> {
         return contexts.ifMutableUntouched {
             load {
-                classInfos
-                    .getClassesWithAnnotation(QakContext::class.java)
-                    .map { it.loadClass().getAnnotation(QakContext::class.java) }
-                    .plus(
-                        classInfos
-                            .getClassesWithAnnotation(QakContextList::class.java)
-                            .map { it.loadClass().getAnnotation(QakContextList::class.java).contexts.asList() }
-                            .flatten()
-                    )
+                val ctx = classInfos[QakContext::class.java]
+                    ?.map { it.getAnnotation(QakContext::class.java) } ?: mutableListOf()
+                val ctxs = classInfos[QakContextList::class.java]
+                    ?.map { it.getAnnotation(QakContextList::class.java).contexts.asList() }
+                    ?.flatten() ?: mutableListOf()
+
+                ctx.plus(ctxs)
             }
         }.asLoadResult()
     }
@@ -177,14 +260,16 @@ object AnnotationLoader {
     @Throws(LoadException::class)
     fun scanForHostname() : LoadResult<String> {
         return hostname.ifMutableUntouched {
-            val annotated = classInfos.getClassesWithAnnotation(HostName::class.java)
-            if(annotated.size > 1)
-                throw LoadException("Only ONE AND ONLY ONE @${HostName::class.java.simpleName} allowed. " +
-                        "Please remove some of these annotations")
-            else if(annotated.size == 1)
-                load {
-                    annotated.first().loadClass().getAnnotation(HostName::class.java).hostname
-                }
+            val annotated = classInfos[HostName::class.java]
+            if(annotated != null) {
+                if(annotated.size > 1)
+                    throw LoadException("Only ONE AND ONLY ONE @${HostName::class.java.simpleName} allowed. " +
+                            "Please remove some of these annotations")
+                else
+                    load {
+                        annotated.first().getAnnotation(HostName::class.java).hostname
+                    }
+            }
             else
                 notFound()
 
@@ -309,9 +394,11 @@ object AnnotationLoader {
     }
 
     private fun loadByQActorBasicFsmClass(
-        clazz : Class<*>, actorName : String, actorBuilder: ActorBasicFsmBuilder) {
+        clazz : Class<*>, actorName : String, actorBuilder: ActorBasicFsmBuilder,
+        qActorBasicFsmInstance : QActorBasicFsm? = null
+    ) {
         sysUtil.traceprintln("\t#loadByQActorBasicFsmClass($clazz, $actorBuilder): invoked")
-        val qakactor = clazz.getConstructor().newInstance() as QActorBasicFsm
+        val qakactor = qActorBasicFsmInstance ?: clazz.getConstructor().newInstance() as QActorBasicFsm
         sysUtil.traceprintln("\t#loadByQActorBasicFsmClass(${clazz.simpleName}, ...): created \'QActorBasicFsm\' instance [$qakactor]")
         actorBuilder.addQActorBasicFsm(qakactor)
         sysUtil.traceprintln("\t#loadByQActorBasicFsmClass(${clazz.simpleName}, ...): added 'QActorBasicFsm' instance to builder")

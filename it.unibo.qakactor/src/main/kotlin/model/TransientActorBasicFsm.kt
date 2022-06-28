@@ -14,7 +14,9 @@ class TransientActorBasicFsm(
     actorBody : TransientActorBasicFsmBody
 ) : TransientActorBasic(actorName, actorScope, discardMessages, confined, ioBound, channelSize, actorBody)
 
-fun TransientActorBasic.asFsm(fsmBody : TransientQActorBasicFsmBody) : TransientActorBasicFsm {
+fun TransientActorBasic.asFsm(
+    fsmBody : TransientQActorBasicFsmBody
+) : TransientActorBasicFsm {
     return TransientActorBasicFsm(actorName, actorScope, discardMessages,
         confined, ioBound, channelSize, fsmBody)
 }

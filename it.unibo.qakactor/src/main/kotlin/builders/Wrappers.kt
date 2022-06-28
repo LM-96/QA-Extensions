@@ -5,6 +5,7 @@ import it.unibo.kactor.model.TransientActorBasic
 import it.unibo.kactor.model.TransientActorBasicFsm
 import it.unibo.kactor.model.actorbody.*
 import it.unibo.kactor.model.asFsm
+import it.unibo.kactor.utils.LateSingleInit
 
 /* ACTORBASIC WRAPPER *************************************************************************************** */
 private class ActorBasicWrapper(tActorBasic : TransientActorBasic) : ActorBasic(

@@ -1,13 +1,8 @@
 package it.unibo.kactor.builders
 
-import it.unibo.kactor.QActorBasic
-import it.unibo.kactor.QActorBasicFsm
-import it.unibo.kactor.State
+import it.unibo.kactor.*
 import it.unibo.kactor.model.*
-import it.unibo.kactor.model.actorbody.TransientLambdaStateBody
-import it.unibo.kactor.model.actorbody.TransientQActorMethodStateBody
-import it.unibo.kactor.model.actorbody.TransientQActorStateBody
-import it.unibo.kactor.model.actorbody.TransientStateBody
+import it.unibo.kactor.model.actorbody.*
 import java.lang.reflect.Method
 
 
@@ -54,7 +49,7 @@ class StateBuilder internal constructor(
     }
 
     fun addStateBodyByQActorMethod(method : Method) : StateBuilder {
-
+        sysUtil.traceprintln("addStateBodyByQActorMethod(${method.name}) [declaring class: ${method.declaringClass}]")
         if(!method.declaringClass.isInstance(qActorBasic))
             throw BuildException("This method is not applicable on an ${qActorBasic.javaClass.simpleName} instance")
         this.stateBody = TransientQActorMethodStateBody(method, qActorBasic)

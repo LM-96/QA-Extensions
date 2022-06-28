@@ -1,6 +1,5 @@
 package it.unibo.kactor.model.actorbody
 
-import it.unibo.kactor.ActorBasic
 import it.unibo.kactor.IApplMessage
 import it.unibo.kactor.QActorBasic
 import it.unibo.kactor.utils.hasActorBasicBodySignature

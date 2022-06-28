@@ -27,6 +27,10 @@ suspend fun launchQak(params : ReadableParameterMap) {
     println("       %%% qakLauncher | QakContext launch complete ")
 }
 
+suspend fun launchQak(vararg params : Pair<String, Any>) {
+    launchQak(immutableParameterMapOf(*params))
+}
+
 fun launchQak(hostName: String, scope: CoroutineScope = GlobalScope ,
               desrFilePath: String, rulesFilePath: String) {
     QakContext.createContexts(hostName, scope, desrFilePath, rulesFilePath)

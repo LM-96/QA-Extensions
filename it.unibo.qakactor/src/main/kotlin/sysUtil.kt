@@ -6,7 +6,6 @@ import alice.tuprolog.Theory
 import it.unibo.`is`.interfaces.protocols.IConnInteraction
 import it.unibo.kactor.annotations.*
 import it.unibo.kactor.builders.wrap
-import it.unibo.kactor.builders.wrapped
 import it.unibo.kactor.utils.KnownParamNames
 import it.unibo.kactor.model.TransientContext
 import it.unibo.kactor.model.TransientSystem
@@ -37,6 +36,7 @@ object sysUtil{
 	val runtimeEnvironment     = Runtime.getRuntime()
 	val userDirectory          = System.getProperty("user.dir")
 	val cpus                   = Runtime.getRuntime().availableProcessors()
+	var ioEnabled			   = true
 	
 @kotlinx.coroutines.ObsoleteCoroutinesApi
 @kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -285,18 +285,24 @@ object sysUtil{
  	MSG LOGS
 */ 	
 	fun createFile( fname : String, dir : String = "logs" ){
- 		val logDirectory = File("$userDirectory/$dir")
-		logDirectory.mkdirs()	//have the object build the directory structure, if needed
-		var file = File(logDirectory, fname)
+ 		if(ioEnabled) {
+			val logDirectory = File("$userDirectory/$dir")
+			logDirectory.mkdirs()	//have the object build the directory structure, if needed
+			var file = File(logDirectory, fname)
 //		println("               %%% sysUtil | createFile file $file in $dir")
-		file.writeText("")	//file is created and nothing is written to it
+			file.writeText("")	//file is created and nothing is written to it
+		}
 	}
 	
 	fun deleteFile( fname : String, dir  : String ){
-		File("$userDirectory/$dir/$fname").delete()
+		if(ioEnabled) {
+			File("$userDirectory/$dir/$fname").delete()
+		}
 	}
 	fun updateLogfile( fname: String, msg : String, dir : String = "logs" ){
-		if( logMsgs ) File("$userDirectory/$dir/$fname").appendText("${msg}\n")
+		if(ioEnabled) {
+			if( logMsgs ) File("$userDirectory/$dir/$fname").appendText("${msg}\n")
+		}
 	}
 	fun aboutThreads(info: String){
 		val tname    = Thread.currentThread().getName();
@@ -370,8 +376,10 @@ object sysUtil{
 	fun startActorsOnHost() {
 		for(ctx in ctxOnHost) {
 			for(actor in ctx.actorMap.values)
-				if(actor is ActorBasicFsm)
-					actor.start()
+				if(actor is ActorBasicFsm) {
+						actor.start()
+						println("               %%% sysUtil | started actor ${actor.name} ")
+				}
 		}
 	}
 

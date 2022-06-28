@@ -11,9 +11,12 @@ open class TransientQActorBasicBody<T : QActorBasic> internal constructor(
 
     @Throws(Exception::class)
     fun injectActorBasic(actorBasic : ActorBasic) {
-        val field = QActorBasic::class.java.getDeclaredField("actor")
-        field.trySetAccessible()
-        field.set(qActorBasic, actorBasic)
+        if(QActorBasic::class.java.isInstance(qActorBasic)) {
+            val field = QActorBasic::class.java.getDeclaredField("actor")
+            field.isAccessible = true
+            field.set(qActorBasic, actorBasic)
+        }
+        else throw IllegalStateException("injection is not supported for class ${qActorBasic::class.java}")
     }
 
 }
