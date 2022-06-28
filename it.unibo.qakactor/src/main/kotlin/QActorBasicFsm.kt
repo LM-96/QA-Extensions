@@ -1,6 +1,9 @@
 package it.unibo.kactor
 
 import alice.tuprolog.Term
+import it.unibo.kactor.builders.ActorBasicFsmWrapper
+import it.unibo.kactor.builders.ActorBasicWrapper
+import it.unibo.kactor.parameters.ImmutableParameterMap
 
 open class QActorBasicFsm internal constructor(actorBasicFsm : ActorBasicFsm? = null) :
     QActorBasic(actorBasicFsm)

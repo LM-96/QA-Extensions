@@ -5,14 +5,15 @@ import it.unibo.kactor.model.TransientActorBasic
 import it.unibo.kactor.model.TransientActorBasicFsm
 import it.unibo.kactor.model.actorbody.*
 import it.unibo.kactor.model.asFsm
-import it.unibo.kactor.utils.LateSingleInit
+import it.unibo.kactor.parameters.ReadableOnlyParametersOwner
 
 /* ACTORBASIC WRAPPER *************************************************************************************** */
-private class ActorBasicWrapper(tActorBasic : TransientActorBasic) : ActorBasic(
+internal class ActorBasicWrapper(tActorBasic : TransientActorBasic) : ActorBasic(
     tActorBasic.actorName, tActorBasic.actorScope, tActorBasic.discardMessages, tActorBasic.confined,
-    tActorBasic.ioBound, tActorBasic.channelSize) {
+    tActorBasic.ioBound, tActorBasic.channelSize), ReadableOnlyParametersOwner {
 
     private val tBody : suspend (IApplMessage) -> Unit
+    override val readOnlyParameters = tActorBasic.parameters
 
     init {
         tBody = when (tActorBasic.actorBody) {
@@ -35,11 +36,14 @@ private class ActorBasicWrapper(tActorBasic : TransientActorBasic) : ActorBasic(
 }
 
 /*  FSM WRAPPER ********************************************************************************************* */
-private class ActorBasicFsmWrapper(tActorBasicFsm: TransientActorBasicFsm) :
+internal class ActorBasicFsmWrapper(tActorBasicFsm: TransientActorBasicFsm) :
     ActorBasicFsm(tActorBasicFsm.actorName, tActorBasicFsm.actorScope, tActorBasicFsm.discardMessages,
-        tActorBasicFsm.confined, tActorBasicFsm.ioBound, tActorBasicFsm.channelSize, false, false) {
+        tActorBasicFsm.confined, tActorBasicFsm.ioBound, tActorBasicFsm.channelSize, false, false),
+        ReadableOnlyParametersOwner
+{
 
     private val tBody : TransientActorBasicFsmBody
+    override val readOnlyParameters = tActorBasicFsm.parameters
 
     init {
 

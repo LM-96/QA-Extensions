@@ -15,4 +15,6 @@ object KnownParamNames {
     val CTX_IS_REMOTE = "isRemote"
     val CTX_REMOTE_ACTOR_LIST = "remoteActors"
 
+    val START_TYPE = "startType"
+
 }

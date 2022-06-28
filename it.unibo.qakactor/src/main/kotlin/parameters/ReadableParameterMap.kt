@@ -98,15 +98,33 @@ abstract class ReadableParameterMap {
     }
 
     /**
-     * Calls the passed `then` block only if it is present a parameter associated with the
-     * given `name`, passing it to the function
+     * Calls the specified `then` block only if the map contains a parameter associated with the
+     * given `name` and if it is an instance of the [clazz] class. If not, so nothing is done
      * @param name the name of the parameter
-     * @param then the function to be invoked with the found parameter
+     * @param clazz the type to be checked
+     * @param then the function to be called
      * @return this map
      */
-    fun ifNotPresent(name : String, then : (Any) -> Unit) : ReadableParameterMap {
+    fun ifIsPresentButNotTypeOf(name : String, clazz : Class<*>, then : (Any) -> Unit) : ReadableParameterMap {
+        if(params.containsKey(name)) {
+            val param = params[name]!!
+            if (!clazz.isInstance(param))
+                then.invoke(param)
+        }
+
+        return this
+    }
+
+    /**
+     * Calls the passed `then` block only if it is **not** present a parameter associated with the
+     * given `name`, passing it to the function
+     * @param name the name of the parameter
+     * @param then the function to be invoked
+     * @return this map
+     */
+    fun ifNotPresent(name : String, then : () -> Unit) : ReadableParameterMap {
         if(!params.containsKey(name))
-            then.invoke(params[name]!!)
+            then.invoke()
 
         return this
     }
@@ -374,6 +392,55 @@ abstract class ReadableParameterMap {
         }
 
         return this
+    }
+
+    /**
+     * Executes the action represented by `then` only if the map contains a parameter associated with the given
+     * `name` that is equals to [expected], the returns the result of the comparison.
+     * Notice that the equality includes the type of the two objects
+     * @param name the name of the searched parameter
+     * @param expected the expected value of the parameter
+     * @param then the action that will be invoked
+     * @return `true` if the parameter associated to the given name is equals to the [expected]
+     */
+    inline fun <reified T> ifIsEqualsTo(name : String, expected : T, then : (T) -> Unit) :
+            Boolean {
+        if(hasParam(name)) {
+            val param = this[name]!!
+            if(param is T)
+                if(param == expected) {
+                    then(param)
+                    return true
+                }
+        }
+
+        return false
+    }
+
+    /**
+     * Returns `true` if the map contains a parameter associated with the given
+     * `name` is equals to [expected]. Notice that the equality includes the type of the two objects
+     * @param name the name of the searched parameter
+     * @param expected the expected value of the parameter
+     * @param then the action that will be invoked
+     * @return `true` if the parameter associated to the given name is equals to the [expected]
+     */
+    inline fun <reified T> isEqualsTo(name : String, expected : T, then : (T) -> Unit) :
+            Boolean {
+        if(hasParam(name)) {
+            val param = this[name]!!
+            if(param is T)
+                if(param == expected) {
+                    then(param)
+                    return true
+                }
+        }
+
+        return false
+    }
+
+    operator fun iterator() : Iterator<Map.Entry<String, Any>> {
+        return params.iterator()
     }
 
     /**

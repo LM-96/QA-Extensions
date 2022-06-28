@@ -1,6 +1,7 @@
 package it.unibo.kactor.model
 
 import it.unibo.kactor.model.actorbody.TransientActorBasicBody
+import it.unibo.kactor.parameters.ImmutableParameterMap
 import kotlinx.coroutines.CoroutineScope
 
 open class TransientActorBasic(
@@ -11,6 +12,7 @@ open class TransientActorBasic(
     val ioBound : Boolean,
     val channelSize : Int,
     val actorBody : TransientActorBasicBody/*? = null*/,
+    val parameters : ImmutableParameterMap
 ) {
 
     override fun toString(): String {

@@ -4,6 +4,9 @@ import io.github.classgraph.ClassGraph
 import it.unibo.kactor.*
 import it.unibo.kactor.builders.*
 import it.unibo.kactor.model.TransientActorBasic
+import it.unibo.kactor.model.TransientStartMode
+import it.unibo.kactor.parameters.ReadableParameterMap
+import it.unibo.kactor.parameters.immutableParameterMap
 import it.unibo.kactor.utils.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.GlobalScope
@@ -148,7 +151,7 @@ object AnnotationLoader {
             println("          %%% annotationLoader | WARNING: Context scopes not specified as parameter of \'loadSystemByAnnotations\' method. Will be used the system scope")
         }.ifIsNotTypeOf(KnownParamNames.SYSTEM_SCOPE, CoroutineScope::class.java) {
             println("          %%% annotationLoader | WARNING: System scope has the invalid type \'${it.javaClass.name}\'. Will be used the \'${GlobalScope::class.java.simpleName}\' scope")
-        }.ifIsNotTypeOf(KnownParamNames.CTX_SCOPES, Map::class.java) {
+        }.ifIsPresentButNotTypeOf(KnownParamNames.CTX_SCOPES, Map::class.java) {
             println("          %%% annotationLoader | WARNING: Context scopes has the invalid type '${it.javaClass.name}'. Will be used the system scope")
         }
 
@@ -302,6 +305,15 @@ object AnnotationLoader {
         actorBuilder.addActorName(actorName)
             .addDiscardMessageOption(actorAnnotation.discardMessage).addConfinedOption(actorAnnotation.confined)
             .addIoBoundOption(actorAnnotation.ioBound).addChannelSizeOption(actorAnnotation.channelSize)
+
+        if(clazz.isAnnotationPresent(StartMode::class.java)) {
+            actorBuilder.addParameter(KnownParamNames.START_TYPE, clazz.getAnnotation(StartMode::class.java).mode)
+            sysUtil.traceprintln("\t#loadByActorClass(${clazz.simpleName}, ...): readed start mode from annotation [${clazz.getAnnotation(StartMode::class.java).mode}]")
+        } else {
+            actorBuilder.addParameter(KnownParamNames.START_TYPE, TransientStartMode.AUTO)
+            sysUtil.traceprintln("\t#loadByActorClass(${clazz.simpleName}, ...): set default start mode [${TransientStartMode.AUTO}]")
+
+        }
 
         var actorBuilderFsm : ActorBasicFsmBuilder? = null
         val type = clazz.getActorClassType()

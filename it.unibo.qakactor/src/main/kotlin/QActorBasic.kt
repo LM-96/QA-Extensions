@@ -2,6 +2,8 @@ package it.unibo.kactor
 
 import it.unibo.`is`.interfaces.protocols.IConnInteraction
 import it.unibo.kactor.dsl.QActorDsl
+import it.unibo.kactor.parameters.ReadableOnlyParametersOwner
+import it.unibo.kactor.parameters.ReadableParameterMap
 
 open class QActorBasic internal constructor(actorBasic : ActorBasic? = null)
 {
@@ -20,6 +22,15 @@ open class QActorBasic internal constructor(actorBasic : ActorBasic? = null)
 
     fun getActorName(): String {
         return actor.name
+    }
+
+    open val parameters : ReadableParameterMap
+    get() {
+        try {
+            return (actor as ReadableOnlyParametersOwner).readOnlyParameters
+        } catch (e : Exception) {
+            throw IllegalStateException("parameters are not supported by this QActor")
+        }
     }
 
     suspend fun autoMsg(msg : IApplMessage) {

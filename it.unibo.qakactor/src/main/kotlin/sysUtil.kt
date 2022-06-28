@@ -5,9 +5,11 @@ import alice.tuprolog.Term
 import alice.tuprolog.Theory
 import it.unibo.`is`.interfaces.protocols.IConnInteraction
 import it.unibo.kactor.annotations.*
+import it.unibo.kactor.builders.ActorBasicFsmWrapper
 import it.unibo.kactor.builders.wrap
 import it.unibo.kactor.utils.KnownParamNames
 import it.unibo.kactor.model.TransientContext
+import it.unibo.kactor.model.TransientStartMode
 import it.unibo.kactor.model.TransientSystem
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.GlobalScope
@@ -376,9 +378,24 @@ object sysUtil{
 	fun startActorsOnHost() {
 		for(ctx in ctxOnHost) {
 			for(actor in ctx.actorMap.values)
-				if(actor is ActorBasicFsm) {
+
+				when(actor) {
+
+					is ActorBasicFsmWrapper -> {
+						println("               %%% sysUtil |  ${actor.name} [params: ${actor.readOnlyParameters}]")
+						actor.readOnlyParameters.ifIsEqualsTo(KnownParamNames.START_TYPE, TransientStartMode.AUTO) {
+							actor.start()
+							println("               %%% sysUtil | started actor ${actor.name} ")
+						}.let {
+							if(!it)
+								println("               %%% sysUtil | actor ${actor.name} NOT started")
+						}
+					}
+
+					is ActorBasicFsm -> {
 						actor.start()
 						println("               %%% sysUtil | started actor ${actor.name} ")
+					}
 				}
 		}
 	}

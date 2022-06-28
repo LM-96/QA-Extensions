@@ -2,9 +2,9 @@ package it.unibo.kactor.builders
 
 import it.unibo.kactor.model.TransientContext
 import it.unibo.kactor.model.TransientSystem
-import it.unibo.kactor.utils.ParameterMap
+import it.unibo.kactor.parameters.MutableParameterMap
+import it.unibo.kactor.parameters.mutableParameterMap
 import it.unibo.kactor.utils.lateSingleInit
-import it.unibo.kactor.utils.mutableParameterMap
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -67,7 +67,7 @@ class SystemBuilder {
         return this
     }
 
-    fun withParameterMap(action : ParameterMap.() -> Unit) : SystemBuilder{
+    fun withParameterMap(action : MutableParameterMap.() -> Unit) : SystemBuilder{
         action.invoke(params)
         return this
     }

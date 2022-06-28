@@ -3,6 +3,7 @@ package it.unibo.kactor.demo
 import it.unibo.kactor.QActorBasicFsm
 import it.unibo.kactor.annotations.*
 import it.unibo.kactor.launchQak
+import it.unibo.kactor.model.TransientStartMode
 import kotlinx.coroutines.runBlocking
 
 @QakContext("sContextTest",
@@ -19,6 +20,7 @@ class DemoIQActorBasicFsm : QActorBasicFsm() {
     @EpsilonMove("begin2idle", "idle")
     suspend fun begin() {
         actorPrintln("started")
+        actorPrintln("current params: $parameters")
     }
 
     @State

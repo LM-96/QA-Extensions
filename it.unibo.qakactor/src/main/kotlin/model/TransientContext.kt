@@ -1,8 +1,8 @@
 package it.unibo.kactor.model
 
 import it.unibo.kactor.annotations.QakContext
-import it.unibo.kactor.utils.ImmutableParameterMap
-import it.unibo.kactor.utils.immutableParameterMap
+import it.unibo.kactor.parameters.ImmutableParameterMap
+import it.unibo.kactor.parameters.immutableParameterMap
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.GlobalScope
 
@@ -20,6 +20,19 @@ data class TransientContext(
         return ctx.name == contextName &&
                 ctx.hostAddr == contextAddress &&
                 ctx.portNum == contextPort
+    }
+
+    fun getTransientActorBasic(name : String) : TransientActorBasic? {
+        return actors.find { it.actorName == name }
+    }
+
+    @Throws(IllegalArgumentException::class)
+    fun getTransientActorBasicFsm(name : String) : TransientActorBasicFsm? {
+        val actor = actors.find { it.actorName == name }
+        if(actor != null)
+            if(actor is TransientActorBasicFsm)
+                return actor
+        return null
     }
 }
 

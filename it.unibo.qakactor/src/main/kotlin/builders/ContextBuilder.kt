@@ -3,8 +3,8 @@ package it.unibo.kactor.builders
 import it.unibo.kactor.annotations.QakContext
 import it.unibo.kactor.model.TransientActorBasic
 import it.unibo.kactor.model.TransientContext
-import it.unibo.kactor.utils.ParameterMap
-import it.unibo.kactor.utils.mutableParameterMap
+import it.unibo.kactor.parameters.MutableParameterMap
+import it.unibo.kactor.parameters.mutableParameterMap
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.GlobalScope
 
@@ -85,7 +85,7 @@ class ContextBuilder(private val systemBuilder: SystemBuilder? = null) {
         return this
     }
 
-    fun withParameterMap(action : ParameterMap.() -> Unit) : ContextBuilder {
+    fun withParameterMap(action : MutableParameterMap.() -> Unit) : ContextBuilder {
         action.invoke(params)
         return this
     }

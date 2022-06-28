@@ -3,6 +3,8 @@ package it.unibo.kactor.builders
 import it.unibo.kactor.*
 import it.unibo.kactor.model.TransientActorBasic
 import it.unibo.kactor.model.actorbody.*
+import it.unibo.kactor.parameters.MutableParameterMap
+import it.unibo.kactor.parameters.mutableParameterMap
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.GlobalScope
 import java.lang.reflect.Method
@@ -17,6 +19,7 @@ open class ActorBasicBuilder(protected val contextBuilder: ContextBuilder? = nul
     protected var confined : Boolean = DEFAULT_CONFINED
     protected var ioBound : Boolean = DEFAULT_IO_BOUND
     protected var channelSize : Int = DEFAUL_CHANNEL_SIZE
+    protected var parameterMap : MutableParameterMap = mutableParameterMap()
 
     protected var actorBody : TransientActorBasicBody? = null
 
@@ -37,6 +40,7 @@ open class ActorBasicBuilder(protected val contextBuilder: ContextBuilder? = nul
         channelSize = DEFAUL_CHANNEL_SIZE
         actorBody = null
         suspendable = false
+        parameterMap = mutableParameterMap()
 
         return this
     }
@@ -122,6 +126,21 @@ open class ActorBasicBuilder(protected val contextBuilder: ContextBuilder? = nul
         return addActorBody(TransientActorBasicClassBody(clazz))
     }
 
+    fun addParameter(name : String, param : Any) : ActorBasicBuilder {
+        parameterMap.addParam(name, param)
+        return this
+    }
+
+    fun removeParameter(name : String) : ActorBasicBuilder {
+        parameterMap.removeParam(name)
+        return this
+    }
+
+    fun withParameters(action : (MutableParameterMap).() -> Unit) : ActorBasicBuilder {
+        action(parameterMap)
+        return this
+    }
+
     @Throws(BuildException::class)
     open fun build() : TransientActorBasic {
         if(actorName == null)
@@ -130,7 +149,7 @@ open class ActorBasicBuilder(protected val contextBuilder: ContextBuilder? = nul
             throw BuildException("Actor body can not be null. Please call \'addActorBody()\' before")
 
         val actor = TransientActorBasic(actorName!!, actorScope, discardMessages,
-            confined, ioBound, channelSize, actorBody!!)
+            confined, ioBound, channelSize, actorBody!!, parameterMap.asImmutable())
         clear()
 
         return actor
@@ -160,6 +179,9 @@ open class ActorBasicBuilder(protected val contextBuilder: ContextBuilder? = nul
         fsmBuilder.forcedAddActorScope(actorScope).addDiscardMessageOption(discardMessages)
             .addConfinedOption(confined).addIoBoundOption(ioBound)
             .addChannelSizeOption(channelSize)
+        for(param in parameterMap) {
+            fsmBuilder.addParameter(param.key, param.value)
+        }
 
         return fsmBuilder
     }

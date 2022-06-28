@@ -1,9 +1,9 @@
 package it.unibo.kactor.dsl
 
 import it.unibo.kactor.launchQak
+import it.unibo.kactor.parameters.asNameOf
+import it.unibo.kactor.parameters.immutableParameterMapOf
 import it.unibo.kactor.utils.KnownParamNames
-import it.unibo.kactor.utils.asNameOf
-import it.unibo.kactor.utils.immutableParameterMapOf
 import kotlinx.coroutines.runBlocking
 
 /* DSL ANNOTATION */
