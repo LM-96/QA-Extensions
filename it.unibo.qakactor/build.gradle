@@ -7,7 +7,8 @@ build.gradle
 plugins {
     id 'java'
     id 'eclipse'
-    id 'org.jetbrains.kotlin.jvm' version '1.6.10'
+    id 'org.jetbrains.kotlin.jvm' version "$kotlin_version"
+    id 'org.jetbrains.dokka' version "$kotlin_version"
 }
 
 version '3.0'
@@ -29,12 +30,15 @@ dependencies {
 
     //KOTLIN REFLECTION
     // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-reflect
-    implementation group: 'org.jetbrains.kotlin', name: 'kotlin-reflect', version: '1.6.10'
+    implementation group: 'org.jetbrains.kotlin', name: 'kotlin-reflect', version: "$kotlin_version"
+
+    //DOKKA
+    dokkaHtmlPlugin group: 'org.jetbrains.dokka', name: 'kotlin-as-java-plugin', version: "$kotlin_version"
 
 
 //COROUTINE
-    implementation group: 'org.jetbrains.kotlinx', name: 'kotlinx-coroutines-core-jvm', version: '1.6.0'
-    implementation group: 'org.jetbrains.kotlinx', name: 'kotlinx-coroutines-core', version: '1.6.0'
+    implementation group: 'org.jetbrains.kotlinx', name: 'kotlinx-coroutines-core-jvm', version: "$kotlin_coroutine_version"
+    implementation group: 'org.jetbrains.kotlinx', name: 'kotlinx-coroutines-core', version: "$kotlin_coroutine_version"
 //ARDUINO
     // https://mvnrepository.com/artifact/org.scream3r/jssc
     implementation group: 'org.scream3r', name: 'jssc', version: '2.8.0'
