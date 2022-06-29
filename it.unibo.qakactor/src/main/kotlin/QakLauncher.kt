@@ -5,9 +5,7 @@ import it.unibo.kactor.utils.KnownParamNames
 import it.unibo.kactor.builders.sysBuilder
 import it.unibo.kactor.parameters.*
 import it.unibo.kactor.utils.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 import kotlinx.coroutines.sync.Mutex
 
 private var QAK_LAUNCHED : Boolean = false
@@ -82,15 +80,15 @@ suspend fun lauchQakN(mutualExclusion: Boolean = true) = tryLaunch(mutualExclusi
         println("               %%% qakLauncher | QakContext launch complete ")
 }
 
-fun qakActor(clazz : Class<*>, params: ReadableParameterMap = immutableParameterMap()) : IQActorBasic {
-    runBlocking {
+fun qakActor(clazz : Class<*>, dispatcher: CoroutineDispatcher = Dispatchers.Default, params: ReadableParameterMap = immutableParameterMap()) : IQActorBasic {
+    runBlocking(dispatcher) {
         launchQak(params)
     }
     return IQActorBasic.IQACTOR_ISTANCES[clazz]!!
 }
 
-fun qakActorFsm(clazz: Class<*>, params: ReadableParameterMap = immutableParameterMap()) : IQActorBasicFsm {
-    runBlocking {
+fun qakActorFsm(clazz: Class<*>, dispatcher: CoroutineDispatcher = Dispatchers.Default, params: ReadableParameterMap = immutableParameterMap()) : IQActorBasicFsm {
+    runBlocking(dispatcher) {
         launchQak(params)
     }
     return qakActor(clazz) as IQActorBasicFsm

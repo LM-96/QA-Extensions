@@ -609,14 +609,14 @@ object AnnotationLoader {
         sysUtil.traceprintln("\t#parseEpsilonMove($tAnn, ...): scanning guard for \'${tAnn.edgeName}\'")
         if(guard != null) {
             sysUtil.traceprintln("\t#parseEpsilonMove($tAnn, ...): found a guard [${tAnn.edgeName}]")
-            transitionBuilder.buildEpsilonMoveGuarded{ guard.invoke(qactor) as Boolean }
+            transitionBuilder.buildEpsilonMoveGuarded{ guard.invoke(qactor.instance.get()) as Boolean }
             sysUtil.traceprintln("\t#parseEpsilonMove($tAnn, ...): builded epsilon move with guard [${tAnn.edgeName}]")
             val elseTarget = guard.getAnnotation(GuardFor::class.java).elseTarget
             if( elseTarget!= "") {
                 sysUtil.traceprintln("\t#parseEpsilonMove($tAnn, ...): found else target for guard [${tAnn.edgeName}]")
                 transitionBuilder.clear().addEdgeName("$#else#_#for#_${tAnn.edgeName}]")
                     .addTargetState(elseTarget)
-                    .buildEpsilonMoveGuarded { !(guard.invoke(qactor) as Boolean) }
+                    .buildEpsilonMoveGuarded { !(guard.invoke(qactor.instance.get()) as Boolean) }
                 sysUtil.traceprintln("\t#parseEpsilonMove($tAnn, ...): builded epsilon move for else target [${tAnn.edgeName}]")
             }
         } else {
@@ -645,7 +645,7 @@ object AnnotationLoader {
         if(guard != null) {
 
             sysUtil.traceprintln("\t#parseWhenDispatch($tAnn, ...): found a guard [${tAnn.edgeName}]")
-            transitionBuilder.buildWhenDispatchGuarded(tAnn.messageName){ guard.invoke(qactor) as Boolean }
+            transitionBuilder.buildWhenDispatchGuarded(tAnn.messageName){ guard.invoke(qactor.instance.get()) as Boolean }
             sysUtil.traceprintln("\t#parseWhenDispatch($tAnn, ...): builded when dispatch transition with guard [${tAnn.edgeName}]")
 
             val elseTarget = guard.getAnnotation(GuardFor::class.java).elseTarget
@@ -653,7 +653,7 @@ object AnnotationLoader {
                 sysUtil.traceprintln("\t#parseWhenDispatch($tAnn, ...): found else target for guard [${tAnn.edgeName}]")
                 transitionBuilder.clear().addEdgeName("$#else#_#for#_${tAnn.edgeName}")
                     .addTargetState(elseTarget)
-                    .buildWhenDispatchGuarded(tAnn.messageName) { !(guard.invoke(qactor) as Boolean) }
+                    .buildWhenDispatchGuarded(tAnn.messageName) { !(guard.invoke(qactor.instance.get()) as Boolean) }
                 sysUtil.traceprintln("\t#parseWhenDispatch($tAnn, $stateBuilder, $guards, $qactor): builded when dispatch transition for else target [${tAnn.edgeName}]")
 
             }
@@ -681,7 +681,7 @@ object AnnotationLoader {
         if(guard != null) {
 
             sysUtil.traceprintln("\t#parseWhenRequest($tAnn, ...): found a guard [${tAnn.edgeName}]")
-            transitionBuilder.buildWhenRequestGuarded(tAnn.messageName){ guard.invoke(qactor) as Boolean }
+            transitionBuilder.buildWhenRequestGuarded(tAnn.messageName){ guard.invoke(qactor.instance.get()) as Boolean }
             sysUtil.traceprintln("\t#parseWhenRequest($tAnn, ...): builded when request transition with guard [${tAnn.edgeName}]")
 
             val elseTarget = guard.getAnnotation(GuardFor::class.java).elseTarget
@@ -690,7 +690,7 @@ object AnnotationLoader {
                 sysUtil.traceprintln("\t#parseWhenRequest($tAnn, ...): found else target for guard [${tAnn.edgeName}]")
                 transitionBuilder.clear().addEdgeName("$#else#_#for#_${tAnn.edgeName}")
                     .addTargetState(elseTarget)
-                    .buildWhenRequestGuarded(tAnn.messageName) { !(guard.invoke(qactor) as Boolean) }
+                    .buildWhenRequestGuarded(tAnn.messageName) { !(guard.invoke(qactor.instance.get()) as Boolean) }
                 sysUtil.traceprintln("\t#parseWhenRequest($tAnn, ...): builded when request transition for else target [${tAnn.edgeName}]")
             }
         } else {
@@ -718,7 +718,7 @@ object AnnotationLoader {
         if(guard != null) {
 
             sysUtil.traceprintln("\t#parseWhenReply($tAnn, ...): found a guard [${tAnn.edgeName}")
-            transitionBuilder.buildWhenReplyGuarded(tAnn.messageName){ guard.invoke(qactor) as Boolean }
+            transitionBuilder.buildWhenReplyGuarded(tAnn.messageName){ guard.invoke(qactor.instance.get()) as Boolean }
             sysUtil.traceprintln("\t#parseWhenReply($tAnn, ...): builded when reply transition with guard [${tAnn.edgeName}]")
 
             val elseTarget = guard.getAnnotation(GuardFor::class.java).elseTarget
@@ -727,7 +727,7 @@ object AnnotationLoader {
                 sysUtil.traceprintln("\t#parseWhenReply($tAnn, ...): found else target for guard [${tAnn.edgeName}]")
                 transitionBuilder.clear().addEdgeName("$#else#_#for#_${tAnn.edgeName}")
                     .addTargetState(elseTarget)
-                    .buildWhenReplyGuarded(tAnn.messageName) { !(guard.invoke(qactor) as Boolean) }
+                    .buildWhenReplyGuarded(tAnn.messageName) { !(guard.invoke(qactor.instance.get()) as Boolean) }
                 sysUtil.traceprintln("\t#parseWhenReply($tAnn,...): builded when reply transition for else target [${tAnn.edgeName}]")
 
             }
@@ -755,7 +755,7 @@ object AnnotationLoader {
 
         if(guard != null) {
             sysUtil.traceprintln("\t#parseWhenEvent($tAnn, ...): found a guard [${tAnn.edgeName}]")
-            transitionBuilder.buildWhenEventGuarded(tAnn.eventName){ guard.invoke(qactor) as Boolean }
+            transitionBuilder.buildWhenEventGuarded(tAnn.eventName){ guard.invoke(qactor.instance.get()) as Boolean }
             sysUtil.traceprintln("\t#parseWhenEvent($tAnn, ...): builded when event transition with guard [${tAnn.edgeName}]")
 
             val elseTarget = guard.getAnnotation(GuardFor::class.java).elseTarget
@@ -763,7 +763,7 @@ object AnnotationLoader {
                 sysUtil.traceprintln("\t#parseWhenEvent($tAnn, ...): found else target for guard [${tAnn.edgeName}]")
                 transitionBuilder.clear().addEdgeName("$#else#_#for#_${tAnn.edgeName}")
                     .addTargetState(elseTarget)
-                    .buildWhenEventGuarded(tAnn.eventName) { !(guard.invoke(qactor) as Boolean) }
+                    .buildWhenEventGuarded(tAnn.eventName) { !(guard.invoke(qactor.instance.get()) as Boolean) }
                 sysUtil.traceprintln("\t#parseWhenEvent($tAnn,...): builded when event transition for else target [${tAnn.edgeName}]")
             }
         } else {

@@ -16,6 +16,10 @@ open class QActorBasic internal constructor(autoSetInstance : Boolean = true,
 
     override val instance: LateSingleInit<IQActorBasic> = lateSingleInit()
 
+    override fun getActorBasic(): ActorBasic {
+        return actor
+    }
+
     protected lateinit var actor : ActorBasic
 
     init {
@@ -99,5 +103,9 @@ open class QActorBasic internal constructor(autoSetInstance : Boolean = true,
 
     override fun updateResource(update : String) {
         actor.updateResourceRep(update)
+    }
+
+    override fun start() {
+        throw IllegalStateException("this function is not already supported for IQActorBasic")
     }
 }

@@ -13,6 +13,10 @@ open class QActorBasicFsm internal constructor(autoSetInstance : Boolean = true,
             actor = actorBasicFsm
     }
 
+    override fun getActorBasic(): ActorBasicFsm {
+        return super.getActorBasic() as ActorBasicFsm
+    }
+
     override val currentMsg : IApplMessage
         get() {return (actor as ActorBasicFsm).getCurrentMessage()}
 
